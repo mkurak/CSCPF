@@ -1,0 +1,16 @@
+{
+    "integration": {
+        "profileEditTabTitle": "PROJE PROFİL EKLENTİSİ",
+        "profileViewTabTitle": "PROJE PROFİL EKLENTİSİ",
+        "menu": {
+            "testNoAuthMenu": {
+                "title": "Rol Gerekmeyen Test Menü",
+                "children": {
+                    "testChild1": {
+                        "title": "Test Alt Menü"
+                    }
+                }
+            }
+        }
+    }
+}
