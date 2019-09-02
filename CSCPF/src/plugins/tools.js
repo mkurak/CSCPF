@@ -368,7 +368,6 @@ const apiAuthPost_withHash = (url, data, hasSecret) => {
 };
 
 const apiAuthPostFile_withHash = (url, data, hasSecret) => {
-  console.log(data);
   return new Promise((resolve, reject) => {
     setAxiosBearer();
     data = modelInjectHash(data, hasSecret);

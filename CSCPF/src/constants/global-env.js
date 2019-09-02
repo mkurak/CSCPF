@@ -1,3 +1,6 @@
+import ProjectHashCodes from "../project/integration/project-env-hash-codes";
+import ProjectEnv from "../project/integration/project-env";
+
 const _productionUrl = "http://localhost:61882"; // "http://localhost:61882"; // 65131
 const _developmentUrl = "http://localhost:61882"; //"http://localhost:61882"; // 65131
 
@@ -124,7 +127,13 @@ const globalEnv = {
         ChangeStatus: "Z3ZAVKFeUmd8Zhje",
         SaveGroupInRoles: "eXUhDJBJvPBAyevF"
       }
+    },
+    Project: {
+      ...ProjectHashCodes
     }
+  },
+  ProjectEnv: {
+    ...ProjectEnv
   }
 };
 

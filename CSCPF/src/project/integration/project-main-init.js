@@ -1,5 +1,3 @@
-const init = vue => {
-  console.log(vue);
-};
+const init = vue => {};
 
 export default init;
