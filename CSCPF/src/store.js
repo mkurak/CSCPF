@@ -19,6 +19,9 @@ import RoleStorage from "./store-modules/storages/role";
 import UserStorage from "./store-modules/storages/user";
 import UserGroupsStorage from "./store-modules/storages/userGroups";
 
+// Project Modules
+import ProjectModules from "./project/integration/project-store-modules";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -39,6 +42,7 @@ export default new Vuex.Store({
     menu,
     RoleStorage,
     UserStorage,
-    UserGroupsStorage
+    UserGroupsStorage,
+    ...ProjectModules
   }
 });
