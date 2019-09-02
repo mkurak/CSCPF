@@ -1,5 +1,6 @@
 import ProjectHashCodes from "../project/integration/project-env-hash-codes";
 import ProjectEnv from "../project/integration/project-env";
+import ProjectApiUrls from "../project/integration/project-api-urls";
 
 const _productionUrl = "http://localhost:61882"; // "http://localhost:61882"; // 65131
 const _developmentUrl = "http://localhost:61882"; //"http://localhost:61882"; // 65131
@@ -57,6 +58,9 @@ const globalEnv = {
         ChangeStatus: "/UserManagement/Group/ChangeStatus",
         SaveGroupInRoles: "/UserManagement/Group/SaveGroupInRoles"
       }
+    },
+    project: {
+      ...ProjectApiUrls
     }
   },
   socket: {
