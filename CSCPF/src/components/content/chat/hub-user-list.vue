@@ -49,12 +49,6 @@ import GlobalEnv from "../../../constants/global-env";
 import Tools from "../../../plugins/tools";
 
 export default {
-  data() {
-    return {
-      GlobalEnv,
-      Tools
-    };
-  },
   props: {
     subHeader: {
       type: String,
@@ -68,6 +62,12 @@ export default {
       type: Boolean,
       required: false
     }
+  },
+  data() {
+    return {
+      GlobalEnv,
+      Tools
+    };
   },
   computed: {
     ...mapGetters([

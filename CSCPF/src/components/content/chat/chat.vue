@@ -16,8 +16,8 @@
     </v-toolbar>
     <v-card class="scrollable2" color="blue-grey lighten-5 messagesState">
       <div v-if="user.messages.length > 0">
-        <v-layout v-for="message in user.messages" :key="message.id">
-          <v-flex xs10 sm10 md10 lg10 xl10 pa-2 v-if="!message.ownerMe">
+        <v-layout v-for="msg in user.messages" :key="msg.id">
+          <v-flex v-if="!message.ownerMe" xs10 sm10 md10 lg10 xl10 pa-2>
             <v-layout>
               <v-flex pa-1>
                 <v-avatar size="32px">
@@ -34,17 +34,18 @@
               </v-flex>
               <v-flex xs12 sm12 md12 lg12 xl12 pa-1>
                 <v-card class="rounded-card">
-                  <div>{{ message.message }}</div>
+                  <div>{{ msg.message }}</div>
                   <div
                     class="caption font-weight-light font-italic grey--text lighten-1--text"
                   >
-                    {{ getDateString(message) }}
+                    {{ getDateString(msg) }}
                   </div>
                 </v-card>
               </v-flex>
             </v-layout>
           </v-flex>
           <v-flex
+            v-else
             xs10
             sm10
             md10
@@ -56,14 +57,13 @@
             offset-md2
             offset-lg2
             offset-xl2
-            v-else
           >
             <v-layout>
               <v-flex xs12 sm12 md12 lg12 xl12 pa-1>
                 <v-card dark class="rounded-card" color="light-green darken-1">
-                  <div>{{ message.message }}</div>
+                  <div>{{ msg.message }}</div>
                   <div class="caption font-weight-light font-italic lime--text">
-                    {{ getDateString(message) }}
+                    {{ getDateString(msg) }}
                   </div>
                 </v-card>
               </v-flex>
@@ -87,6 +87,7 @@
     </v-card>
     <v-card>
       <v-textarea
+        v-model="message"
         filled
         :label="this.$t('components.app.chat.template.messageBoxPlaceholder')"
         rows="4"
@@ -96,7 +97,6 @@
         hide-details
         :disabled="messageSending"
         @keyup="watchEnterKey"
-        v-model="message"
       ></v-textarea>
     </v-card>
   </v-flex>
@@ -126,6 +126,28 @@ export default {
       "g_session_currentUser",
       "g_socket_users_getUser"
     ])
+  },
+  watch: {
+    g_socket_users() {
+      if (this.g_socket_users.length > 0) {
+        this.onLoad();
+      }
+    },
+    $route() {
+      this.onLoad();
+    }
+  },
+  mounted() {
+    if (this.g_socket_users.length > 0) {
+      this.onLoad();
+    }
+  },
+  updated() {
+    this.messagesScrollToEnd();
+    this.$store.dispatch(
+      "a_socket_users_saveViewAllUnViewMessages",
+      this.user.id
+    );
   },
   methods: {
     onLoad() {
@@ -173,28 +195,6 @@ export default {
       let scrollHeight = state.scrollHeight;
       state.scrollTop = scrollHeight;
     }
-  },
-  mounted() {
-    if (this.g_socket_users.length > 0) {
-      this.onLoad();
-    }
-  },
-  watch: {
-    g_socket_users() {
-      if (this.g_socket_users.length > 0) {
-        this.onLoad();
-      }
-    },
-    $route() {
-      this.onLoad();
-    }
-  },
-  updated() {
-    this.messagesScrollToEnd();
-    this.$store.dispatch(
-      "a_socket_users_saveViewAllUnViewMessages",
-      this.user.id
-    );
   }
 };
 </script>

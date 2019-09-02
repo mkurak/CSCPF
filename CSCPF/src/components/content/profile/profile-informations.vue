@@ -5,6 +5,7 @@
         <v-card-text>
           <v-form ref="profileForm" v-model="formValid" lazy-validation>
             <v-text-field
+              v-model="form.Name"
               :label="
                 $t(
                   'components.content.profile.profileInformations.template.formInputLabels.name'
@@ -12,12 +13,12 @@
               "
               name="profileFormName"
               type="text"
-              v-model="form.Name"
               counter="256"
               :rules="validations.NameValidation"
               required
             ></v-text-field>
             <v-text-field
+              v-model="form.Surname"
               :label="
                 $t(
                   'components.content.profile.profileInformations.template.formInputLabels.surname'
@@ -25,12 +26,12 @@
               "
               name="profileFormSurname"
               type="text"
-              v-model="form.Surname"
               counter="256"
               :rules="validations.SurnameValidation"
               required
             ></v-text-field>
             <v-text-field
+              v-model="form.ProfileStatusMessage"
               :label="
                 $t(
                   'components.content.profile.profileInformations.template.formInputLabels.statusMessage'
@@ -38,7 +39,6 @@
               "
               name="profileFormProfileStatusMessage"
               type="text"
-              v-model="form.ProfileStatusMessage"
               counter="512"
               :rules="validations.ProfileStatusMessageValidation"
               required
@@ -63,10 +63,10 @@
           </v-tooltip>
           <v-btn
             color="primary"
-            @click="formSubmit"
             :loading="sendProcessStatus"
             :disabled="sendProcessStatus"
             text
+            @click="formSubmit"
           >
             {{
               $t(
@@ -132,6 +132,9 @@ export default {
   },
   computed: {
     ...mapGetters(["g_session_currentUser"])
+  },
+  created() {
+    this.resetForm();
   },
   methods: {
     formSubmit() {
@@ -199,9 +202,6 @@ export default {
       this.form.Surname = this.g_session_currentUser.surname;
       this.form.ProfileStatusMessage = this.g_session_currentUser.profileStatusMessage;
     }
-  },
-  created() {
-    this.resetForm();
   }
 };
 </script>

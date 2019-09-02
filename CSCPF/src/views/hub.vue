@@ -74,10 +74,10 @@
                 <v-row>
                   <v-col cols="12">
                     <v-switch
+                      v-model="storage.loadStartUp"
                       :label="
                         $t('views.hub.template.settingsLabels.loadStartup')
                       "
-                      v-model="storage.loadStartUp"
                       hide-details
                       color="success"
                       :disabled="storage.ownerSystem"
@@ -87,8 +87,8 @@
                   </v-col>
                   <v-col cols="12">
                     <v-switch
-                      :label="$t('views.hub.template.settingsLabels.coverData')"
                       v-model="storage.coverData"
+                      :label="$t('views.hub.template.settingsLabels.coverData')"
                       hide-details
                       color="success"
                       :disabled="storage.ownerSystem"
@@ -259,6 +259,10 @@ export default {
       };
     }
   },
+  async mounted() {
+    await Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
+    this.contentViewStatus = true;
+  },
   methods: {
     applyChanges() {
       this.$store.commit("m_layout_loading_view", true);
@@ -276,10 +280,6 @@ export default {
           this.$store.commit("m_layout_loading_view", false);
         });
     }
-  },
-  async mounted() {
-    await Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
-    this.contentViewStatus = true;
   }
 };
 </script>

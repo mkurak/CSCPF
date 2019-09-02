@@ -6,7 +6,7 @@
     <v-divider></v-divider>
     <v-card-text class="pt-5">
       <v-row fluid>
-        <v-col cols="12" v-for="role in g_storages_role_items" :key="role.id">
+        <v-col v-for="role in g_storages_role_items" :key="role.id" cols="12">
           <v-checkbox
             v-model="selectedRoles"
             :label="role.roleName"
@@ -25,8 +25,8 @@
         outlined
         depressed
         color="warning"
-        @click="close"
         :loading="sendProcessStatus"
+        @click="close"
         >{{ $t("components.content.groupRoles.template.cancelBtnText") }}</v-btn
       >
       <v-btn
@@ -46,19 +46,19 @@ import Tools from "../../../plugins/tools";
 import t from "../../../plugins/i18n";
 
 export default {
-  data: () => ({
-    sendProcessStatus: false,
-    selectedRoles: []
-  }),
-  computed: {
-    ...mapGetters(["g_storages_role_items"])
-  },
   props: {
     group: {
       type: Object,
       required: false,
       default: null
     }
+  },
+  data: () => ({
+    sendProcessStatus: false,
+    selectedRoles: []
+  }),
+  computed: {
+    ...mapGetters(["g_storages_role_items"])
   },
   methods: {
     init() {

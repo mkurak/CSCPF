@@ -76,7 +76,7 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <project-tab-component></project-tab-component>
+            <ProjectTabComponent></ProjectTabComponent>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -96,16 +96,16 @@ export default {
   components: {
     ProjectTabComponent
   },
-  data: () => ({
-    Tools,
-    GlobalEnv
-  }),
   props: {
     user: {
       type: Object,
       required: true
     }
   },
+  data: () => ({
+    Tools,
+    GlobalEnv
+  }),
   computed: {
     ...mapGetters(["g_session_tokenUser"])
   },

@@ -4,11 +4,14 @@
 
 <script>
 export default {
-  data: () => ({}),
   props: {
-    user: Object,
-    default: null
+    user: {
+      type: Object,
+      required: false,
+      default: null
+    }
   },
+  data: () => ({}),
   methods: {
     save() {
       return new Promise(resolve => {

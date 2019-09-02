@@ -1,11 +1,11 @@
 <template>
   <v-navigation-drawer
+    v-model="currentUserMenuView"
     temporary
     right
     dark
     app
     clipped
-    v-model="currentUserMenuView"
   >
     <v-list class="pa-0">
       <v-list-item>

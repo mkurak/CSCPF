@@ -14,7 +14,7 @@
         <span class="body-2">{{ giveUserFullName }}</span>
       </p>
       <v-row fluid>
-        <v-col cols="12" v-for="role in g_storages_role_items" :key="role.id">
+        <v-col v-for="role in g_storages_role_items" :key="role.id" cols="12">
           <v-checkbox
             v-model="selectedRoles"
             :label="role.roleName + (checkGroup(role.id) ? ' (gruptan)' : '')"
@@ -34,8 +34,8 @@
         outlined
         depressed
         color="warning"
-        @click="close"
         :loading="sendProcessStatus"
+        @click="close"
         >{{
           $t("components.content.userInRolesManage.template.cancelBtnText")
         }}</v-btn
@@ -59,6 +59,13 @@ import Tools from "../../../plugins/tools";
 import t from "../../../plugins/i18n";
 
 export default {
+  props: {
+    user: {
+      type: Object,
+      required: false,
+      default: null
+    }
+  },
   data: () => ({
     sendProcessStatus: false,
     selectedRoles: [],
@@ -70,13 +77,6 @@ export default {
       return Tools.isNullOrEmpty(this.user)
         ? ""
         : this.user.user.name + " " + this.user.user.surname;
-    }
-  },
-  props: {
-    user: {
-      type: Object,
-      required: false,
-      default: null
     }
   },
   methods: {

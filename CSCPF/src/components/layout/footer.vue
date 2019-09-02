@@ -7,7 +7,7 @@
       </v-btn>
     </span>
     <v-divider vertical></v-divider>
-    <socket-updater-component></socket-updater-component>
+    <SocketUpdaterComponent></SocketUpdaterComponent>
     <v-divider vertical></v-divider>
     <v-spacer></v-spacer>
     <span>

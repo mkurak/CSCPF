@@ -16,9 +16,9 @@
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title
-                  v-html="tools.checkI18n(item.title)"
-                ></v-list-item-title>
+                <v-list-item-title>
+                  {{ tools.checkI18n(item.title) }}
+                </v-list-item-title>
                 <v-list-item-subtitle>{{
                   tools.checkI18n(item.content)
                 }}</v-list-item-subtitle>
@@ -57,14 +57,6 @@ export default {
   computed: {
     ...mapGetters(["g_notification_items"])
   },
-  methods: {
-    remove(id) {
-      this.$store.dispatch("a_notification_items_remove", id);
-    },
-    goUrl(url) {
-      this.$router.push(url);
-    }
-  },
   async mounted() {
     this.$store.commit("m_layout_loading_view", true);
     await this.$store.dispatch("a_notification_items_viewPointAll");
@@ -74,6 +66,14 @@ export default {
   },
   async updated() {
     await this.$store.dispatch("a_notification_items_viewPointAll");
+  },
+  methods: {
+    remove(id) {
+      this.$store.dispatch("a_notification_items_remove", id);
+    },
+    goUrl(url) {
+      this.$router.push(url);
+    }
   }
 };
 </script>

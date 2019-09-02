@@ -5,10 +5,10 @@
     <v-card-text class="pt-5">
       <v-form ref="actionForm" v-model="formValid" lazy-validation>
         <v-text-field
+          v-model="form.name"
           :label="$t('components.content.groupForm.template.labels.name')"
           clearable
           :counter="256"
-          v-model="form.name"
           :rules="validations.nameValidation"
           :disabled="sendProcessStatus"
         ></v-text-field>
@@ -20,8 +20,8 @@
         outlined
         depressed
         color="warning"
-        @click="close"
         :loading="sendProcessStatus"
+        @click="close"
         >{{
           $t("components.content.groupForm.template.btn.cancelBtnText")
         }}</v-btn
@@ -44,6 +44,13 @@ import t from "../../../plugins/i18n";
 import Tools from "../../../plugins/tools";
 
 export default {
+  props: {
+    group: {
+      type: Object,
+      required: false,
+      default: null
+    }
+  },
   data: () => ({
     overlay: true,
     sendProcessStatus: false,
@@ -67,13 +74,6 @@ export default {
       name: ""
     }
   }),
-  props: {
-    group: {
-      type: Object,
-      required: false,
-      default: null
-    }
-  },
   computed: {},
   methods: {
     close() {

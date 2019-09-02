@@ -5,11 +5,11 @@
         {{ $t("views.userManagement.groups.template.screenTitle") }}
         <v-spacer></v-spacer>
         <v-btn
+          v-if="Tools.checkRole('Root.UserManagement.Group.Add')"
           class="ma-2 white--text"
           color="success"
           elevation="0"
           @click="newItem"
-          v-if="Tools.checkRole('Root.UserManagement.Group.Add')"
           >{{ $t("views.userManagement.groups.template.addNewBtnText") }}</v-btn
         >
       </v-card-title>
@@ -69,9 +69,9 @@
                       <v-tab-item class="pa-6">
                         <v-row fluit>
                           <v-col
-                            cols="3"
                             v-for="role in getGroupRoles(props.item)"
                             :key="role.id"
+                            cols="3"
                             class="text-left"
                           >
                             <v-icon>mdi-security</v-icon>
@@ -87,9 +87,9 @@
                       <v-tab-item class="pa-6">
                         <v-row fluit>
                           <v-col
-                            cols="3"
                             v-for="user in getGroupUsers(props.item)"
                             :key="user.user.id"
+                            cols="3"
                           >
                             <v-card class="mx-auto" max-width="434" tile>
                               <v-img
@@ -178,8 +178,8 @@
             }}</template>
             <template v-slot:item.actions="{ item }">
               <v-tooltip
-                bottom
                 v-if="Tools.checkRole('Root.UserManagement.Group.Update')"
+                bottom
               >
                 <template v-slot:activator="{ on }">
                   <v-icon small class="mr-2" v-on="on" @click="editItem(item)"
@@ -191,8 +191,8 @@
                 </span>
               </v-tooltip>
               <v-tooltip
-                bottom
                 v-if="Tools.checkRole('Root.UserManagement.Group.ChangeRoles')"
+                bottom
               >
                 <template v-slot:activator="{ on }">
                   <v-icon small class="mr-2" v-on="on" @click="editRoles(item)"
@@ -206,8 +206,8 @@
                 </span>
               </v-tooltip>
               <v-tooltip
-                bottom
                 v-if="Tools.checkRole('Root.UserManagement.Group.ChangeStatus')"
+                bottom
               >
                 <template v-slot:activator="{ on }">
                   <v-icon small class="mr-2" v-on="on" @click="deleteItem(item)"
@@ -224,18 +224,18 @@
       </v-layout>
     </v-card>
     <v-dialog v-model="editDialogView" max-width="600" persistent scrollable>
-      <form-component
+      <FormComponent
+        ref="formComp"
         :group="currentGroup"
         @close="closeFormDialog"
-        ref="formComp"
-      ></form-component>
+      ></FormComponent>
     </v-dialog>
     <v-dialog v-model="rolesDialogView" max-width="600" persistent scrollable>
-      <roles-component
+      <RolesComponent
+        ref="rolesComp"
         :group="currentGroup"
         @close="closeRolesDialog"
-        ref="rolesComp"
-      ></roles-component>
+      ></RolesComponent>
     </v-dialog>
   </div>
 </template>
@@ -329,6 +329,10 @@ export default {
       };
     }
   },
+  async mounted() {
+    await Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
+    this.contentViewStatus = true;
+  },
   methods: {
     newItem() {
       this.editDialogView = true;
@@ -402,10 +406,6 @@ export default {
     closeRolesDialog() {
       this.rolesDialogView = false;
     }
-  },
-  async mounted() {
-    await Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
-    this.contentViewStatus = true;
   }
 };
 </script>

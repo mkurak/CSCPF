@@ -44,7 +44,7 @@
             <v-tab-item>
               <v-card flat>
                 <v-card-text>
-                  <informations-component></informations-component>
+                  <InformationsComponent></InformationsComponent>
                 </v-card-text>
               </v-card>
             </v-tab-item>
@@ -52,7 +52,7 @@
             <v-tab-item>
               <v-card flat>
                 <v-card-text>
-                  <images-component></images-component>
+                  <ImagesComponent></ImagesComponent>
                 </v-card-text>
               </v-card>
             </v-tab-item>
@@ -60,7 +60,7 @@
             <v-tab-item>
               <v-card flat>
                 <v-card-text>
-                  <change-password-component></change-password-component>
+                  <ChangePasswordComponent></ChangePasswordComponent>
                 </v-card-text>
               </v-card>
             </v-tab-item>
@@ -68,7 +68,7 @@
             <v-tab-item>
               <v-card flat>
                 <v-card-text>
-                  <project-profile-tab></project-profile-tab>
+                  <ProjectProfileTab></ProjectProfileTab>
                 </v-card-text>
               </v-card>
             </v-tab-item>

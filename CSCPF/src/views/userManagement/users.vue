@@ -5,11 +5,11 @@
         {{ $t("views.userManagement.users.template.screenTitle") }}
         <v-spacer></v-spacer>
         <v-btn
+          v-if="Tools.checkRole('Root.UserManagement.User.Add')"
           class="ma-2 white--text"
           color="success"
           elevation="0"
           @click="newItem"
-          v-if="Tools.checkRole('Root.UserManagement.User.Add')"
           >{{ $t("views.userManagement.users.template.addNewBtnText") }}</v-btn
         >
       </v-card-title>
@@ -31,9 +31,9 @@
               <td :colspan="props.headers.length">
                 <v-layout class="justify-space-between pa-2">
                   <v-flex d-flex text-center>
-                    <user-details-component
+                    <UserDetailsComponent
                       :user="props.item.user"
-                    ></user-details-component>
+                    ></UserDetailsComponent>
                   </v-flex>
                 </v-layout>
               </td>
@@ -70,8 +70,8 @@
             }}</template>
             <template v-slot:item.actions="{ item }">
               <v-tooltip
-                bottom
                 v-if="Tools.checkRole('Root.UserManagement.User.Update')"
+                bottom
               >
                 <template v-slot:activator="{ on }">
                   <v-icon small class="mr-2" v-on="on" @click="editItem(item)"
@@ -87,8 +87,8 @@
                 </span>
               </v-tooltip>
               <v-tooltip
-                bottom
                 v-if="Tools.checkRole('Root.UserManagement.User.UserInGroup')"
+                bottom
               >
                 <template v-slot:activator="{ on }">
                   <v-icon
@@ -108,8 +108,8 @@
                 </span>
               </v-tooltip>
               <v-tooltip
-                bottom
                 v-if="Tools.checkRole('Root.UserManagement.User.ChangeRoles')"
+                bottom
               >
                 <template v-slot:activator="{ on }">
                   <v-icon
@@ -129,8 +129,8 @@
                 </span>
               </v-tooltip>
               <v-tooltip
-                bottom
                 v-if="Tools.checkRole('Root.UserManagement.User.ChangeStatus')"
+                bottom
               >
                 <template v-slot:activator="{ on }">
                   <v-icon small class="mr-2" v-on="on" @click="deleteItem(item)"
@@ -151,11 +151,11 @@
       </v-layout>
     </v-card>
     <v-dialog v-model="userFormDialog" max-width="600" persistent scrollable>
-      <user-form-component
+      <UserFormComponent
+        ref="userFormComp"
         :user="currentUser"
         @close="closeDialog"
-        ref="userFormComp"
-      ></user-form-component>
+      ></UserFormComponent>
     </v-dialog>
     <v-dialog
       v-model="userInGroupsDialog"
@@ -163,18 +163,18 @@
       persistent
       scrollable
     >
-      <user-in-groups-manage-component
+      <UserInGroupsManageComponent
+        ref="userInGroupsManageComp"
         :user="currentUser"
         @close="closeUserInGroupsDialog"
-        ref="userInGroupsManageComp"
-      ></user-in-groups-manage-component>
+      ></UserInGroupsManageComponent>
     </v-dialog>
     <v-dialog v-model="userInRolesDialog" max-width="600" persistent scrollable>
-      <user-in-roles-manage-component
+      <UserInRolesManageComponent
+        ref="userInRolesManageComp"
         :user="currentUser"
         @close="closeUserInRolesDialog"
-        ref="userInRolesManageComp"
-      ></user-in-roles-manage-component>
+      ></UserInRolesManageComponent>
     </v-dialog>
   </div>
 </template>
@@ -257,6 +257,10 @@ export default {
     items() {
       return this.g_storages_user_items;
     }
+  },
+  async mounted() {
+    await Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
+    this.contentViewStatus = true;
   },
   methods: {
     editItem(item) {
@@ -349,10 +353,6 @@ export default {
       this.userInRolesDialog = true;
       this.manageUserInRolesInit();
     }
-  },
-  async mounted() {
-    await Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
-    this.contentViewStatus = true;
   }
 };
 </script>

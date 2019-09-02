@@ -5,13 +5,13 @@
         <v-card-text>
           <v-form ref="changePasswordForm" v-model="formValid" lazy-validation>
             <v-text-field
+              v-model="form.CurrentPass"
               :label="
                 $t(
                   'components.content.profile.passwordChange.template.currentPassLabel'
                 )
               "
               name="changePasswordFormCurrentPass"
-              v-model="form.CurrentPass"
               counter="32"
               :rules="validations.CurrentPassValidation"
               :hint="
@@ -20,18 +20,18 @@
                 )
               "
               :append-icon="showCurrentPass ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="showCurrentPass = !showCurrentPass"
               :type="showCurrentPass ? 'text' : 'password'"
               required
+              @click:append="showCurrentPass = !showCurrentPass"
             ></v-text-field>
             <v-text-field
+              v-model="form.NewPass"
               :label="
                 $t(
                   'components.content.profile.passwordChange.template.newPassLabel'
                 )
               "
               name="changePasswordFormNewPass"
-              v-model="form.NewPass"
               counter="32"
               :rules="validations.NewPassValidation"
               :hint="
@@ -40,18 +40,18 @@
                 )
               "
               :append-icon="showNewPass ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="showNewPass = !showNewPass"
               :type="showNewPass ? 'text' : 'password'"
               required
+              @click:append="showNewPass = !showNewPass"
             ></v-text-field>
             <v-text-field
+              v-model="form.NewPassAgain"
               :label="
                 $t(
                   'components.content.profile.passwordChange.template.newPass2Label'
                 )
               "
               name="changePasswordFormNewPassAgain"
-              v-model="form.NewPassAgain"
               counter="32"
               :rules="validations.NewPassAgainValidation"
               :hint="
@@ -60,9 +60,9 @@
                 )
               "
               :append-icon="showNewPassAgain ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="showNewPassAgain = !showNewPassAgain"
               :type="showNewPassAgain ? 'text' : 'password'"
               required
+              @click:append="showNewPassAgain = !showNewPassAgain"
             ></v-text-field>
           </v-form>
         </v-card-text>
@@ -84,10 +84,10 @@
           </v-tooltip>
           <v-btn
             color="primary"
-            @click="formSubmit"
             :loading="sendProcessStatus"
             :disabled="sendProcessStatus"
             text
+            @click="formSubmit"
           >
             {{
               $t(

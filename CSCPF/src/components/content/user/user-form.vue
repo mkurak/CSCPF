@@ -5,46 +5,48 @@
     <v-card-text class="pt-5">
       <v-form ref="actionForm" v-model="formValid" lazy-validation>
         <v-text-field
+          v-model="currentUser.name"
           :label="
             $t('components.content.user.userForm.template.form.labels.name')
           "
           clearable
           :counter="256"
-          v-model="currentUser.name"
           :rules="validations.nameValidation"
           :disabled="sendProcessStatus"
         ></v-text-field>
         <v-text-field
+          v-model="currentUser.surname"
           :label="
             $t('components.content.user.userForm.template.form.labels.surname')
           "
           clearable
           :counter="256"
-          v-model="currentUser.surname"
           :rules="validations.surnameValidation"
           :disabled="sendProcessStatus"
         ></v-text-field>
         <v-text-field
+          v-model="currentUser.userName"
           :label="
             $t('components.content.user.userForm.template.form.labels.userName')
           "
           clearable
           :counter="32"
-          v-model="currentUser.userName"
           :rules="validations.userNameValidation"
           :disabled="sendProcessStatus"
         ></v-text-field>
         <v-text-field
+          v-model="currentUser.email"
           :label="
             $t('components.content.user.userForm.template.form.labels.email')
           "
           clearable
           :counter="256"
-          v-model="currentUser.email"
           :rules="validations.emailValidation"
           :disabled="sendProcessStatus"
         ></v-text-field>
         <v-text-field
+          v-if="showCurrentPassInput"
+          v-model="currentUser.currentPass"
           :label="
             $t(
               'components.content.user.userForm.template.form.labels.currentPass'
@@ -54,11 +56,10 @@
           :counter="32"
           :hint="$t('components.content.user.userForm.template.form.passHint')"
           :type="show.currentPass ? 'text' : 'password'"
-          v-model="currentUser.currentPass"
-          v-if="showCurrentPassInput"
           :disabled="sendProcessStatus"
         ></v-text-field>
         <v-text-field
+          v-model="currentUser.newPass"
           :label="
             $t('components.content.user.userForm.template.form.labels.newPass')
           "
@@ -66,10 +67,10 @@
           :counter="32"
           :hint="$t('components.content.user.userForm.template.form.passHint')"
           :type="show.newPass ? 'text' : 'password'"
-          v-model="currentUser.newPass"
           :disabled="sendProcessStatus"
         ></v-text-field>
         <v-text-field
+          v-model="currentUser.newPassAgain"
           :label="
             $t(
               'components.content.user.userForm.template.form.labels.newPassAgain'
@@ -79,10 +80,9 @@
           :counter="32"
           :hint="$t('components.content.user.userForm.template.form.passHint')"
           :type="show.newPassAgain ? 'text' : 'password'"
-          v-model="currentUser.newPassAgain"
           :disabled="sendProcessStatus"
         ></v-text-field>
-        <project-user-form :user="user" ref="projectForm"></project-user-form>
+        <ProjectUserForm ref="projectForm" :user="user"></ProjectUserForm>
       </v-form>
     </v-card-text>
     <v-card-actions>
@@ -91,8 +91,8 @@
         outlined
         depressed
         color="warning"
-        @click="close"
         :loading="sendProcessStatus"
+        @click="close"
       >
         {{ $t("components.content.user.userForm.template.form.cancelBtnText") }}
       </v-btn>
@@ -116,6 +116,13 @@ import ProjectUserForm from "../../../project/integration/project-user-form";
 export default {
   components: {
     ProjectUserForm
+  },
+  props: {
+    user: {
+      type: Object,
+      required: false,
+      default: null
+    }
   },
   data: () => ({
     show: {
@@ -187,10 +194,6 @@ export default {
       ]
     }
   }),
-  props: {
-    user: Object,
-    default: null
-  },
   computed: {
     headline() {
       return this.user === null || this.user === undefined

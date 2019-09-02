@@ -5,7 +5,7 @@
       size="20"
       width="2"
     ></v-progress-circular>
-    <span class="pl-2 caption" v-if="active"
+    <span v-if="active" class="pl-2 caption"
       >Socket verileri güncelliyor...</span
     >
   </div>

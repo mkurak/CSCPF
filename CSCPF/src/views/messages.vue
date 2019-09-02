@@ -6,11 +6,11 @@
     <v-layout justify-space-between pa-4>
       <v-flex d-flex xs3 sm3 md3 lg3 xl3>
         <v-card class="scrollable" style="width: 100%;">
-          <hub-user-list-component
-            :subHeader="$t('views.messages.template.userListHeader')"
-            listType
-            useActiveClass
-          ></hub-user-list-component>
+          <HubUserListComponent
+            :sub-header="$t('views.messages.template.userListHeader')"
+            list-type
+            use-active-class
+          ></HubUserListComponent>
         </v-card>
       </v-flex>
       <router-view></router-view>

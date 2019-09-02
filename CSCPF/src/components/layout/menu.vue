@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app clipped fixed v-model="drawerViewStatus">
+  <v-navigation-drawer v-model="drawerViewStatus" app clipped fixed>
     <v-list dense>
       <v-list-item to="/">
         <v-list-item-icon>

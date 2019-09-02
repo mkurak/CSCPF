@@ -18,17 +18,18 @@
                 <v-card-text>
                   <v-form ref="loginForm" v-model="formValid" lazy-validation>
                     <v-text-field
+                      v-model="email"
                       :label="this.$t('views.login.template.emailLabel')"
                       name="login"
                       prepend-icon="mdi-email"
                       type="text"
                       counter="256"
                       required
-                      v-model="email"
                       :rules="emailValidation"
                     ></v-text-field>
                     <v-text-field
                       id="password"
+                      v-model="pass"
                       :label="this.$t('views.login.template.passLabel')"
                       name="password"
                       prepend-icon="mdi-lock"
@@ -36,7 +37,6 @@
                       counter="32"
                       required
                       :rules="passValidation"
-                      v-model="pass"
                     ></v-text-field>
                   </v-form>
                 </v-card-text>
@@ -44,9 +44,9 @@
                   <v-spacer></v-spacer>
                   <v-btn
                     color="primary"
-                    @click="formSubmit"
                     :loading="sendProcessStatus"
                     :disabled="sendProcessStatus"
+                    @click="formSubmit"
                     >{{ $t("views.login.template.enterBtn") }}</v-btn
                   >
                 </v-card-actions>
@@ -94,6 +94,11 @@ export default {
           this.$t("views.login.script.passValidation.passWrongFormat")
       ]
     };
+  },
+  async mounted() {
+    await this.$store.dispatch("a_session_logout");
+    Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
+    this.contentViewStatus = true;
   },
   methods: {
     async formSubmit() {
@@ -147,11 +152,6 @@ export default {
           this.$store.commit("m_layout_loading_view", false);
         });
     }
-  },
-  async mounted() {
-    await this.$store.dispatch("a_session_logout");
-    Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
-    this.contentViewStatus = true;
   }
 };
 </script>

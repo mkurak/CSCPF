@@ -35,8 +35,8 @@
             >
               <template v-slot:prepend="{ item, active }">
                 <v-avatar
-                  size="32px"
                   v-if="item.id != 'root1' && item.id != 'root2'"
+                  size="32px"
                 >
                   <img
                     :src="
@@ -65,10 +65,10 @@
                   >{{ $t("views.socketUsers.template.selectUserInfo") }}</span
                 >
               </div>
-              <user-details-component
-                :user="active[0]"
+              <UserDetailsComponent
                 v-else
-              ></user-details-component>
+                :user="active[0]"
+              ></UserDetailsComponent>
             </v-scroll-y-transition>
           </v-flex>
         </v-layout>
@@ -126,6 +126,13 @@ export default {
       return arr;
     }
   },
+  watch: {
+    selected: "randomAvatar"
+  },
+  async mounted() {
+    await Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
+    this.contentViewStatus = true;
+  },
   methods: {
     getUser_fullName(id) {
       if (id === parseInt(this.g_session_tokenUser.unique_name)) {
@@ -150,13 +157,6 @@ export default {
     goMessage() {
       this.$router.push(GlobalEnv.messages.route + "/" + this.active[0].id);
     }
-  },
-  watch: {
-    selected: "randomAvatar"
-  },
-  async mounted() {
-    await Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
-    this.contentViewStatus = true;
   }
 };
 </script>

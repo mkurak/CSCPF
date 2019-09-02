@@ -12,8 +12,8 @@
             }}
           </v-btn>
           <v-btn
-            color="info pulse"
             v-if="currentProfilePicFile != ''"
+            color="info pulse"
             @click="saveNewProfilePic"
           >
             <v-icon left dark>mdi-content-save</v-icon>
@@ -24,9 +24,9 @@
             }}
           </v-btn>
           <input
+            ref="profilePicFI"
             type="file"
             style="display: none"
-            ref="profilePicFI"
             accept="image/*"
             @change="onProfilePicChange"
           />
@@ -56,8 +56,8 @@
             }}
           </v-btn>
           <v-btn
-            color="info pulse"
             v-if="currentProfileBgPicFile != ''"
+            color="info pulse"
             @click="saveNewProfileBgPic"
           >
             <v-icon left dark>mdi-content-save</v-icon>
@@ -68,9 +68,9 @@
             }}
           </v-btn>
           <input
+            ref="profileBgPicFI"
             type="file"
             style="display: none"
-            ref="profileBgPicFI"
             accept="image/*"
             @change="onProfileBgPicChange"
           />
@@ -112,6 +112,32 @@ export default {
   },
   computed: {
     ...mapGetters(["g_session_currentUser"])
+  },
+  watch: {
+    g_session_currentUser() {
+      this.currentProfilePicUrl = Tools.getImage(
+        GlobalEnv.socketUsers.profilePic.path,
+        this.g_session_currentUser.profilePic,
+        GlobalEnv.socketUsers.profilePic.default
+      );
+      this.currentProfileBgPicUrl = Tools.getImage(
+        GlobalEnv.socketUsers.profileBgPic.path,
+        this.g_session_currentUser.profileBgPic,
+        GlobalEnv.socketUsers.profileBgPic.default
+      );
+    }
+  },
+  created() {
+    this.currentProfilePicUrl = Tools.getImage(
+      GlobalEnv.socketUsers.profilePic.path,
+      this.g_session_currentUser.profilePic,
+      GlobalEnv.socketUsers.profilePic.default
+    );
+    this.currentProfileBgPicUrl = Tools.getImage(
+      GlobalEnv.socketUsers.profileBgPic.path,
+      this.g_session_currentUser.profileBgPic,
+      GlobalEnv.socketUsers.profileBgPic.default
+    );
   },
   methods: {
     profilePicSelect() {
@@ -232,32 +258,6 @@ export default {
           this.$store.commit("m_layout_loading_view", false);
         });
     }
-  },
-  watch: {
-    g_session_currentUser() {
-      this.currentProfilePicUrl = Tools.getImage(
-        GlobalEnv.socketUsers.profilePic.path,
-        this.g_session_currentUser.profilePic,
-        GlobalEnv.socketUsers.profilePic.default
-      );
-      this.currentProfileBgPicUrl = Tools.getImage(
-        GlobalEnv.socketUsers.profileBgPic.path,
-        this.g_session_currentUser.profileBgPic,
-        GlobalEnv.socketUsers.profileBgPic.default
-      );
-    }
-  },
-  created() {
-    this.currentProfilePicUrl = Tools.getImage(
-      GlobalEnv.socketUsers.profilePic.path,
-      this.g_session_currentUser.profilePic,
-      GlobalEnv.socketUsers.profilePic.default
-    );
-    this.currentProfileBgPicUrl = Tools.getImage(
-      GlobalEnv.socketUsers.profileBgPic.path,
-      this.g_session_currentUser.profileBgPic,
-      GlobalEnv.socketUsers.profileBgPic.default
-    );
   }
 };
 </script>

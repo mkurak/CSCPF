@@ -1,8 +1,8 @@
 <template>
   <v-app-bar app clipped-left clipped-right>
     <v-app-bar-nav-icon
-      @click.stop="drawerViewStatus = !drawerViewStatus"
       v-if="g_layout_appBarNavIconView"
+      @click.stop="drawerViewStatus = !drawerViewStatus"
     ></v-app-bar-nav-icon>
     <v-img
       :src="GlobalEnv.layout.logoFile.file"
@@ -12,7 +12,7 @@
     ></v-img>
     <v-toolbar-title>{{ GlobalEnv.layout.appName }}</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-tooltip bottom v-if="g_notification_toolbar_view">
+    <v-tooltip v-if="g_notification_toolbar_view" bottom>
       <template v-slot:activator="{ on }">
         <v-btn
           icon
@@ -20,10 +20,10 @@
           @click="$router.push(GlobalEnv.notification.route)"
         >
           <v-badge
+            v-show="g_notification_items_unViewed.length > 0"
             overlap
             name="fade"
             mode="out-in"
-            v-show="g_notification_items_unViewed.length > 0"
           >
             <template v-slot:badge>{{
               g_notification_items_unViewed.length
@@ -37,14 +37,14 @@
       </template>
       <span>{{ $t("notification.toolbar.tooltip") }}</span>
     </v-tooltip>
-    <v-tooltip bottom v-if="g_socketUsers_toolbar_view">
+    <v-tooltip v-if="g_socketUsers_toolbar_view" bottom>
       <template v-slot:activator="{ on }">
         <v-btn
           icon
           v-on="on"
           @click="$router.push(GlobalEnv.socketUsers.route)"
         >
-          <v-badge overlap v-show="g_socket_users_getOnlineUsers.length > 0">
+          <v-badge v-show="g_socket_users_getOnlineUsers.length > 0" overlap>
             <template v-slot:badge>{{
               g_socket_users_getOnlineUsers.length
             }}</template>
@@ -57,10 +57,10 @@
       </template>
       <span>{{ $t("socketUsers.toolbar.tooltip") }}</span>
     </v-tooltip>
-    <v-tooltip bottom v-if="g_messages_toolbar_view">
+    <v-tooltip v-if="g_messages_toolbar_view" bottom>
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on" @click="$router.push(GlobalEnv.messages.route)">
-          <v-badge overlap v-show="g_socket_currentUserNewMessages.length > 0">
+          <v-badge v-show="g_socket_currentUserNewMessages.length > 0" overlap>
             <template v-slot:badge>{{
               g_socket_currentUserNewMessages.length
             }}</template>
@@ -73,24 +73,24 @@
       </template>
       <span>{{ $t("messages.toolbar.tooltip") }}</span>
     </v-tooltip>
-    <v-tooltip bottom v-if="g_socket_view">
+    <v-tooltip v-if="g_socket_view" bottom>
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on" @click="$router.push('/hub')">
           <v-progress-circular
+            v-if="!g_socket_status"
             indeterminate
             size="20"
-            v-if="!g_socket_status"
           ></v-progress-circular>
-          <v-icon color="green" v-else>mdi-wifi</v-icon>
+          <v-icon v-else color="green">mdi-wifi</v-icon>
         </v-btn>
       </template>
       <span>{{ $t("socket.toolbar.tooltip") }}</span>
     </v-tooltip>
-    <v-tooltip bottom v-if="g_session_toolbar_currentUserView">
+    <v-tooltip v-if="g_session_toolbar_currentUserView" bottom>
       <template v-slot:activator="{ on }">
         <v-btn
-          v-on="on"
           icon
+          v-on="on"
           @click="currentUserMenuView = !currentUserMenuView"
         >
           <v-avatar size="32px">
@@ -113,7 +113,7 @@
     </v-tooltip>
     <v-menu offset-y>
       <template v-slot:activator="{ on }">
-        <v-btn dark v-on="on" icon>
+        <v-btn dark icon v-on="on">
           <v-avatar size="32px">
             <v-img :src="getflag"></v-img>
           </v-avatar>

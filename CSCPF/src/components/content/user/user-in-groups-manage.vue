@@ -15,9 +15,9 @@
       </p>
       <v-row fluid>
         <v-col
-          cols="12"
           v-for="group in g_storages_userGroups_items"
           :key="group.id"
+          cols="12"
         >
           <v-checkbox
             v-model="selectedGroup"
@@ -37,8 +37,8 @@
         outlined
         depressed
         color="warning"
-        @click="close"
         :loading="sendProcessStatus"
+        @click="close"
         >{{
           $t("components.content.userInGroupsManage.template.cancelBtnText")
         }}</v-btn
@@ -62,6 +62,13 @@ import Tools from "../../../plugins/tools";
 import t from "../../../plugins/i18n";
 
 export default {
+  props: {
+    user: {
+      type: Object,
+      required: false,
+      default: null
+    }
+  },
   data: () => ({
     sendProcessStatus: false,
     selectedGroup: []
@@ -72,13 +79,6 @@ export default {
       return Tools.isNullOrEmpty(this.user)
         ? ""
         : this.user.user.name + " " + this.user.user.surname;
-    }
-  },
-  props: {
-    user: {
-      type: Object,
-      required: false,
-      default: null
     }
   },
   methods: {

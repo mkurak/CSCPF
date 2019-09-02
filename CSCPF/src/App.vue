@@ -1,16 +1,16 @@
 <template>
   <v-app>
-    <menu-component></menu-component>
-    <current-user-menu-component></current-user-menu-component>
-    <header-component></header-component>
+    <MenuComponent></MenuComponent>
+    <CurrentUserMenuComponent></CurrentUserMenuComponent>
+    <HeaderComponent></HeaderComponent>
     <v-content>
       <v-scroll-y-transition mode="out-in">
         <router-view />
       </v-scroll-y-transition>
     </v-content>
-    <footer-component></footer-component>
-    <loading-component></loading-component>
-    <v-snackbar-queue :items="g_snackbarMessages" top></v-snackbar-queue>
+    <FooterComponent></FooterComponent>
+    <LoadingComponent></LoadingComponent>
+    <VSnackbarQueue :items="g_snackbarMessages" top></VSnackbarQueue>
   </v-app>
 </template>
 
@@ -37,8 +37,8 @@ export default {
   computed: {
     ...mapGetters(["g_snackbarMessages"])
   },
-  methods: {},
-  mounted() {}
+  mounted() {},
+  methods: {}
 };
 </script>
 

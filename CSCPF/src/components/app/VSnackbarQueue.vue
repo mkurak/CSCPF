@@ -27,7 +27,7 @@
           })
         }}
       </v-btn>
-      <v-btn icon v-else color="white" text @click="removeItem(item.id)">
+      <v-btn v-else icon color="white" text @click="removeItem(item.id)">
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </v-snackbar>
@@ -40,11 +40,6 @@ import Tools from "../../plugins/tools";
 
 export default {
   name: "VSnackbarQueue",
-  data: () => ({
-    Tools,
-    processing: false,
-    timeoutId: false
-  }),
   props: {
     /**
      * Array for items to display [{id: '', color: '', message: ''}]
@@ -54,44 +49,64 @@ export default {
       required: true
     },
     value: {
+      type: Boolean,
       required: false,
       default: false
     },
     timeout: {
+      type: Number,
       required: false,
       default: 2000
     },
     color: {
+      type: String,
       required: false,
       default: "error"
     },
     top: {
+      type: Boolean,
       required: false,
       default: false
     },
     right: {
+      type: Boolean,
       required: false,
       default: false
     },
     absolute: {
+      type: Boolean,
       required: false,
       default: false
     },
     bottom: {
+      type: Boolean,
       required: false,
       default: false
     },
     left: {
+      type: Boolean,
       required: false,
       default: false
     },
     multiLine: {
+      type: Boolean,
       required: false,
       default: false
     },
     vertical: {
+      type: Boolean,
       required: false,
       default: false
+    }
+  },
+  data: () => ({
+    Tools,
+    processing: false,
+    timeoutId: false
+  }),
+  watch: {
+    items() {
+      this.processItems();
     }
   },
   methods: {
@@ -116,11 +131,6 @@ export default {
           return vm.processItems();
         }
       });
-    }
-  },
-  watch: {
-    items() {
-      this.processItems();
     }
   }
 };
