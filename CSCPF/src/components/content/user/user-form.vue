@@ -318,7 +318,7 @@ export default {
           currentPassword: this.currentUser.currentPass,
           newPassword: this.currentUser.newPass
         })
-        .then(() => {
+        .then(returnUser => {
           let msg = "";
 
           if (this.currentUser.id > 0)
@@ -331,7 +331,7 @@ export default {
             );
 
           this.$refs.projectForm
-            .save()
+            .save(returnUser)
             .then(() => {
               Tools.showSuccessMsg(
                 t.t(

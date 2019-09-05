@@ -1,8 +1,9 @@
 <template>
   <v-card v-if="contentViewStatus">
-    <v-card-title class="indigo white--text headline">{{
-      $t("views.messages.screenTitle")
-    }}</v-card-title>
+    <v-card-title
+      :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
+      >{{ $t("views.messages.screenTitle") }}</v-card-title
+    >
     <v-layout justify-space-between pa-4>
       <v-flex d-flex xs3 sm3 md3 lg3 xl3>
         <v-card class="scrollable" style="width: 100%;">
@@ -28,6 +29,7 @@ export default {
     HubUserListComponent
   },
   data: () => ({
+    GlobalEnv,
     contentViewStatus: false
   }),
   async mounted() {

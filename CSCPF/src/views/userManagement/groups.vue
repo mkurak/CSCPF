@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-card v-if="contentViewStatus">
-      <v-card-title class="indigo white--text headline">
+      <v-card-title
+        :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
+      >
         {{ $t("views.userManagement.groups.template.screenTitle") }}
         <v-spacer></v-spacer>
         <v-btn
@@ -24,7 +26,6 @@
             multi-sort
             show-expand
             item-key="id"
-            single-expand
             :expanded.sync="datatable.expanded"
           >
             <template v-slot:expanded-item="props">

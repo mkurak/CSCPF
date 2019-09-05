@@ -415,8 +415,9 @@ const getImage = (root, path, errorImage) => {
 const modelInjectHash = (model, secretKey) => {
   let compileHasString = "";
   Object.values(model).forEach(val => {
-    compileHasString += val;
+    if (!isNullOrEmpty(val)) compileHasString += val;
   });
+  console.log(compileHasString);
   model.Hash = sha1(compileHasString + secretKey);
 
   return model;
@@ -456,6 +457,7 @@ const checkI18n = val => {
 
 const checkRole = role => {
   if (role === null || role === undefined || role === "") return true;
+  if (isNullOrEmpty(store.getters.g_session_tokenUser.role)) return false;
 
   let currentUserRoles = store.getters.g_session_tokenUser.role;
   let roleSplit = role.split(".");
@@ -514,6 +516,19 @@ const showErrorWithApi = (err, title, errorNamespace) => {
   else showErrorMsg(i18n.t(title), msg);
 };
 
+const giveErrorWithApi = (err, errorNamespace) => {
+  let msg = i18n.t(errorNamespace + err);
+
+  if (err === GlobalEnv.axios.defaultErrorCode)
+    msg = i18n.t("api.errors.TechnicalError");
+
+  if (err === GlobalEnv.axios.default400) msg = i18n.t("api.errors.Status400");
+
+  if (err === GlobalEnv.axios.default401) msg = i18n.t("api.errors.Status401");
+
+  return msg;
+};
+
 export default {
   validateEmail,
   validatePass,
@@ -539,5 +554,6 @@ export default {
   formatBytes,
   isNullOrEmpty,
   convertToJSONDate,
-  showErrorWithApi
+  showErrorWithApi,
+  giveErrorWithApi
 };

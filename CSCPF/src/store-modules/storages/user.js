@@ -2,7 +2,6 @@ import Tools from "../../plugins/tools";
 import GlobalEnv from "../../constants/global-env";
 import t from "../../plugins/i18n";
 import sha1 from "sha1";
-import _ from "underscore";
 
 const state = {
   storages: {
@@ -55,10 +54,13 @@ const mutations = {
     ];
   },
   m_storages_user_items_remove(state, id) {
-    let findIndex = _.findIndex(state.storages.user.items, {
-      id
-    });
-    if (findIndex > -1) state.storages.user.items.splice(findIndex, 1);
+    let targetIndex = -1;
+    for (let i = 0; i < state.storages.user.items.length; i++) {
+      let item = state.storages.user.items[i];
+      if (item.user.id === id) targetIndex = i;
+    }
+
+    if (targetIndex > -1) state.storages.user.items.splice(targetIndex, 1);
   }
 };
 

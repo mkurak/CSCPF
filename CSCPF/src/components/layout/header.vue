@@ -4,12 +4,14 @@
       v-if="g_layout_appBarNavIconView"
       @click.stop="drawerViewStatus = !drawerViewStatus"
     ></v-app-bar-nav-icon>
-    <v-img
+    <img
       :src="GlobalEnv.layout.logoFile.file"
-      :max-height="GlobalEnv.layout.logoFile.maxHeight"
-      :max-width="GlobalEnv.layout.logoFile.maxWeight"
-      class="mr-2"
-    ></v-img>
+      alt=""
+      :style="{
+        maxHeight: GlobalEnv.layout.logoFile.maxHeight + 'px',
+        maxWeight: GlobalEnv.layout.logoFile.maxWeight + 'px'
+      }"
+    />
     <v-toolbar-title>{{ GlobalEnv.layout.appName }}</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-tooltip v-if="g_notification_toolbar_view" bottom>

@@ -26,7 +26,7 @@
             ></v-img>
           </v-avatar>
           <h3 class="headline mb-2">
-            {{ user.fullName }} ({{ user.userName }})
+            {{ user.name }} {{ user.surname }} ({{ user.userName }})
           </h3>
           <div class="mb-2">{{ user.email }}</div>
           <div class="subheading font-weight-bold">
@@ -76,7 +76,7 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <ProjectTabComponent></ProjectTabComponent>
+            <ProjectTabComponent :user="user"></ProjectTabComponent>
           </v-card-text>
         </v-card>
       </v-tab-item>

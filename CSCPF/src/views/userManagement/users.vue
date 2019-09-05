@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-card v-if="contentViewStatus">
-      <v-card-title class="indigo white--text headline">
+      <v-card-title
+        :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
+      >
         {{ $t("views.userManagement.users.template.screenTitle") }}
         <v-spacer></v-spacer>
         <v-btn
@@ -24,7 +26,6 @@
             multi-sort
             show-expand
             item-key="user.id"
-            single-expand
             :expanded.sync="datatable.expanded"
           >
             <template v-slot:expanded-item="props">
@@ -198,6 +199,7 @@ export default {
     UserInRolesManageComponent
   },
   data: () => ({
+    GlobalEnv,
     Tools,
     contentViewStatus: false,
     datatable: {

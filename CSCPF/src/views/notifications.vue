@@ -1,8 +1,9 @@
 <template>
   <v-card v-if="contentViewStatus">
-    <v-card-title class="indigo white--text headline">{{
-      $t("views.notifications.screenTitle")
-    }}</v-card-title>
+    <v-card-title
+      :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
+      >{{ $t("views.notifications.screenTitle") }}</v-card-title
+    >
     <v-layout justify-space-between pa-4>
       <v-flex xs12>
         <v-list three-line>
@@ -51,6 +52,7 @@ import { mapGetters } from "vuex";
 
 export default {
   data: () => ({
+    GlobalEnv,
     contentViewStatus: false,
     tools: Tools
   }),

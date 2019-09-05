@@ -1,8 +1,9 @@
 <template>
   <v-card v-if="contentViewStatus">
-    <v-card-title class="indigo white--text headline">{{
-      $t("views.login.screenTitle")
-    }}</v-card-title>
+    <v-card-title
+      :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
+      >{{ $t("views.login.screenTitle") }}</v-card-title
+    >
     <v-layout justify-space-between pa-4>
       <v-flex>
         <v-container fill-height fluid>
@@ -67,6 +68,7 @@ import sha1 from "sha1";
 export default {
   data() {
     return {
+      GlobalEnv,
       contentViewStatus: false,
       formValid: true,
       sendProcessStatus: false,
@@ -99,6 +101,7 @@ export default {
     await this.$store.dispatch("a_session_logout");
     Tools.sleep(GlobalEnv.layout.defaultSleepDelay);
     this.contentViewStatus = true;
+    localStorage.clear();
   },
   methods: {
     async formSubmit() {
@@ -135,6 +138,10 @@ export default {
           this.$store.commit("m_layout_loading_view", true);
           this.$store.dispatch("a_initializer_start").then(() => {
             if (this.$store.getters.g_initializer_loginStatus) {
+              let version = JSON.stringify(
+                require("../../package.json").projectVersion
+              );
+              localStorage.setItem("cscpf_version", version);
               this.$router.push("/");
             } else {
               this.sendProcessStatus = false;

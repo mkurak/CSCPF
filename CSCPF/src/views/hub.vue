@@ -1,8 +1,9 @@
 <template>
   <v-card v-if="contentViewStatus">
-    <v-card-title class="indigo white--text headline">{{
-      $t("views.hub.template.screenTitle")
-    }}</v-card-title>
+    <v-card-title
+      :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
+      >{{ $t("views.hub.template.screenTitle") }}</v-card-title
+    >
     <v-layout justify-space-between pa-4>
       <v-flex>
         <v-container fluid>
@@ -218,6 +219,7 @@ import sizeOf from "object-sizeof";
 
 export default {
   data: () => ({
+    GlobalEnv,
     contentViewStatus: false,
     loadingStatus: false
   }),

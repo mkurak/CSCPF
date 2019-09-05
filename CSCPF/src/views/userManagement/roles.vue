@@ -1,6 +1,7 @@
 <template>
   <v-card v-if="contentViewStatus">
-    <v-card-title class="indigo white--text headline"
+    <v-card-title
+      :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
       >Yetki Tanımları</v-card-title
     >
     <v-layout justify-space-between pa-4>
@@ -52,6 +53,7 @@ import { mapGetters } from "vuex";
 
 export default {
   data: () => ({
+    GlobalEnv,
     Tools,
     contentViewStatus: false,
     search: ""

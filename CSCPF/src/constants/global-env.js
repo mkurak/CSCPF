@@ -79,7 +79,12 @@ const globalEnv = {
       fallback: "tr",
       defaultFlag: "turkey.svg"
     },
-    defaultSleepDelay: 500
+    defaultSleepDelay: 500,
+    copyright: {
+      url: "https://www.codescientific.com",
+      label: "Code Scientific"
+    },
+    titleStateBgColor: "indigo"
   },
   notification: {
     route: "/notifications"

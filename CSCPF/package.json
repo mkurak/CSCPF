@@ -1,6 +1,7 @@
 {
   "name": "cscpf",
-  "version": "1.2.2",
+  "version": "1.3.3",
+  "projectVersion": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

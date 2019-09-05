@@ -13,11 +13,11 @@
     <span>
       &copy; {{ copyrightYear }}
       <a
-        href="https://www.codescientific.com"
+        :href="GlobalEnv.layout.copyright.url"
         target="_blank"
-        title="Code Scientific"
+        :title="GlobalEnv.layout.copyright.label"
         class="customLink"
-        >Code Scientific</a
+        >{{ GlobalEnv.layout.copyright.label }}</a
       >
     </span>
   </v-footer>
@@ -26,6 +26,7 @@
 <script>
 import sizeOf from "object-sizeof";
 import Tools from "../../plugins/tools";
+import GlobalEnv from "../../constants/global-env";
 
 import SocketUpdaterComponent from "./socket-updater";
 
@@ -34,6 +35,7 @@ export default {
     SocketUpdaterComponent
   },
   data: () => ({
+    GlobalEnv,
     copyrightYear: 2019
   }),
   computed: {

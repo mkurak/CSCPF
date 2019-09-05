@@ -1,8 +1,9 @@
 <template>
   <v-card v-if="contentViewStatus">
-    <v-card-title class="indigo white--text headline">{{
-      $t("views.CurrentUser.Profile.screenTitle")
-    }}</v-card-title>
+    <v-card-title
+      :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
+      >{{ $t("views.CurrentUser.Profile.screenTitle") }}</v-card-title
+    >
     <v-layout justify-space-between pa-4>
       <v-flex>
         <v-parallax
