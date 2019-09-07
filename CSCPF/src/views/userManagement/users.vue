@@ -318,7 +318,6 @@ export default {
     closeDialog() {
       this.userFormDialog = false;
       this.currentUser = null;
-      this.formInit();
     },
     formInit() {
       setTimeout(() => {

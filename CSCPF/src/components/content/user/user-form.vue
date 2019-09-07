@@ -112,6 +112,7 @@
 import t from "../../../plugins/i18n";
 import Tools from "../../../plugins/tools";
 import ProjectUserForm from "../../../project/integration/project-user-form";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -195,6 +196,7 @@ export default {
     }
   }),
   computed: {
+    ...mapGetters(["g_session_currentUser"]),
     headline() {
       return this.user === null || this.user === undefined
         ? t.t(
@@ -206,100 +208,36 @@ export default {
     }
   },
   methods: {
-    close() {
+    close(saveComplate) {
       this.$store.commit("m_layout_loading_view", false);
       this.$refs.actionForm.reset();
+
+      if (saveComplate === true) {
+        if (this.currentUser.id === this.g_session_currentUser.id) {
+          Tools.showSuccessMsg(
+            "Durum Bilgisi",
+            "Güncellenen kullanıcı bilgileri sizin bilgileriniz olduğundan, güvenlik nedeniyle oturumunuz kapatılacaktır. Lütfen yeniden giriş yapın."
+          );
+          this.$store.commit("m_storages_backgroundJobCountReset");
+          this.$router.push("/login");
+        }
+      }
+
+      this.currentUser.id = 0;
+      this.currentUser.name = "";
+      this.currentUser.surname = "";
+      this.currentUser.email = "";
+      this.currentUser.currentPass = "";
+      this.currentUser.newPass = "";
+      this.currentUser.newPassAgain = "";
+
       this.$emit("close");
     },
     save() {
       if (this.currentUser.id === 0) {
-        if (Tools.isNullOrEmpty(this.currentUser.newPass)) {
-          this.$store.dispatch("a_snackbarMessage_add", {
-            color: "error",
-            message: t.t(
-              "components.content.user.userForm.script.methods.save.passwordErrors.newPassEmpty"
-            )
-          });
-          return;
-        }
-
-        if (Tools.isNullOrEmpty(this.currentUser.newPassAgain)) {
-          this.$store.dispatch("a_snackbarMessage_add", {
-            color: "error",
-            message: t.t(
-              "components.content.user.userForm.script.methods.save.passwordErrors.newPassAgainEmpty"
-            )
-          });
-          return;
-        }
-
-        if (
-          !Tools.isNullOrEmpty(this.currentUser.newPass) &&
-          !Tools.isNullOrEmpty(this.currentUser.newPassAgain)
-        ) {
-          if (this.currentUser.newPass !== this.currentUser.newPassAgain) {
-            this.$store.dispatch("a_snackbarMessage_add", {
-              color: "error",
-              message: t.t(
-                "components.content.user.userForm.script.methods.save.passwordErrors.newPassAgainWrong"
-              )
-            });
-            return;
-          }
-        }
+        if (!this.save_add_validation()) return;
       } else {
-        if (
-          Tools.isNullOrEmpty(this.currentUser.currentPass) &&
-          (!Tools.isNullOrEmpty(this.currentUser.newPass) ||
-            !Tools.isNullOrEmpty(this.currentUser.newPassAgain))
-        ) {
-          this.$store.dispatch("a_snackbarMessage_add", {
-            color: "error",
-            message: t.t(
-              "components.content.user.userForm.script.methods.save.passwordErrors.currentPassEmpty"
-            )
-          });
-          return;
-        }
-
-        if (
-          !Tools.isNullOrEmpty(this.currentUser.currentPass) &&
-          Tools.isNullOrEmpty(this.currentUser.newPass)
-        ) {
-          this.$store.dispatch("a_snackbarMessage_add", {
-            color: "error",
-            message: t.t(
-              "components.content.user.userForm.script.methods.save.passwordErrors.newPassEmpty2"
-            )
-          });
-          return;
-        }
-
-        if (
-          !Tools.isNullOrEmpty(this.currentUser.currentPass) &&
-          Tools.isNullOrEmpty(this.currentUser.newPassAgain)
-        ) {
-          this.$store.dispatch("a_snackbarMessage_add", {
-            color: "error",
-            message: t.t(
-              "components.content.user.userForm.script.methods.save.passwordErrors.newPassAgainEmpty2"
-            )
-          });
-          return;
-        }
-
-        if (
-          !Tools.isNullOrEmpty(this.currentUser.currentPass) &&
-          this.currentUser.newPassAgain !== this.currentUser.newPass
-        ) {
-          this.$store.dispatch("a_snackbarMessage_add", {
-            color: "error",
-            message: t.t(
-              "components.content.user.userForm.script.methods.save.passwordErrors.newPassAgainWrong2"
-            )
-          });
-          return;
-        }
+        if (!this.save_update_validation()) return;
       }
 
       this.sendProcessStatus = true;
@@ -308,9 +246,107 @@ export default {
         t.t("components.content.user.userForm.script.methods.save.loading")
       );
 
+      if (this.currentUser.id > 0) this.save_update_project();
+      else this.save_add_user();
+    },
+    save_add_validation() {
+      if (Tools.isNullOrEmpty(this.currentUser.newPass)) {
+        this.$store.dispatch("a_snackbarMessage_add", {
+          color: "error",
+          message: t.t(
+            "components.content.user.userForm.script.methods.save.passwordErrors.newPassEmpty"
+          )
+        });
+        return false;
+      }
+
+      if (Tools.isNullOrEmpty(this.currentUser.newPassAgain)) {
+        this.$store.dispatch("a_snackbarMessage_add", {
+          color: "error",
+          message: t.t(
+            "components.content.user.userForm.script.methods.save.passwordErrors.newPassAgainEmpty"
+          )
+        });
+        return false;
+      }
+
+      if (
+        !Tools.isNullOrEmpty(this.currentUser.newPass) &&
+        !Tools.isNullOrEmpty(this.currentUser.newPassAgain)
+      ) {
+        if (this.currentUser.newPass !== this.currentUser.newPassAgain) {
+          this.$store.dispatch("a_snackbarMessage_add", {
+            color: "error",
+            message: t.t(
+              "components.content.user.userForm.script.methods.save.passwordErrors.newPassAgainWrong"
+            )
+          });
+          return false;
+        }
+      }
+
+      return true;
+    },
+    save_update_validation() {
+      if (
+        Tools.isNullOrEmpty(this.currentUser.currentPass) &&
+        (!Tools.isNullOrEmpty(this.currentUser.newPass) ||
+          !Tools.isNullOrEmpty(this.currentUser.newPassAgain))
+      ) {
+        this.$store.dispatch("a_snackbarMessage_add", {
+          color: "error",
+          message: t.t(
+            "components.content.user.userForm.script.methods.save.passwordErrors.currentPassEmpty"
+          )
+        });
+        return false;
+      }
+
+      if (
+        !Tools.isNullOrEmpty(this.currentUser.currentPass) &&
+        Tools.isNullOrEmpty(this.currentUser.newPass)
+      ) {
+        this.$store.dispatch("a_snackbarMessage_add", {
+          color: "error",
+          message: t.t(
+            "components.content.user.userForm.script.methods.save.passwordErrors.newPassEmpty2"
+          )
+        });
+        return false;
+      }
+
+      if (
+        !Tools.isNullOrEmpty(this.currentUser.currentPass) &&
+        Tools.isNullOrEmpty(this.currentUser.newPassAgain)
+      ) {
+        this.$store.dispatch("a_snackbarMessage_add", {
+          color: "error",
+          message: t.t(
+            "components.content.user.userForm.script.methods.save.passwordErrors.newPassAgainEmpty2"
+          )
+        });
+        return false;
+      }
+
+      if (
+        !Tools.isNullOrEmpty(this.currentUser.currentPass) &&
+        this.currentUser.newPassAgain !== this.currentUser.newPass
+      ) {
+        this.$store.dispatch("a_snackbarMessage_add", {
+          color: "error",
+          message: t.t(
+            "components.content.user.userForm.script.methods.save.passwordErrors.newPassAgainWrong2"
+          )
+        });
+        return false;
+      }
+
+      return true;
+    },
+    save_add_user() {
       this.$store
         .dispatch("a_storages_user_items_add_api", {
-          id: this.currentUser.id,
+          id: 0,
           name: this.currentUser.name,
           surname: this.currentUser.surname,
           userName: this.currentUser.userName,
@@ -351,6 +387,56 @@ export default {
               this.$store.commit("m_layout_loading_view", false);
               this.sendProcessStatus = false;
             });
+        })
+        .catch(err => {
+          Tools.showErrorWithApi(
+            err,
+            "components.content.user.userForm.script.methods.save.error.title",
+            "api.errors.UserManagement.User.Save."
+          );
+
+          this.$store.commit("m_layout_loading_view", false);
+          this.sendProcessStatus = false;
+        });
+    },
+    save_update_project() {
+      this.$refs.projectForm
+        .save(this.user)
+        .then(() => {
+          this.save_update_user();
+        })
+        .catch(err => {
+          Tools.showErrorMsg(
+            t.t(
+              "components.content.user.userForm.script.methods.save.error.title"
+            ),
+            err
+          );
+          this.$store.commit("m_layout_loading_view", false);
+          this.sendProcessStatus = false;
+        });
+    },
+    save_update_user() {
+      this.$store
+        .dispatch("a_storages_user_items_add_api", {
+          id: this.currentUser.id,
+          name: this.currentUser.name,
+          surname: this.currentUser.surname,
+          userName: this.currentUser.userName,
+          email: this.currentUser.email,
+          currentPassword: this.currentUser.currentPass,
+          newPassword: this.currentUser.newPass
+        })
+        .then(() => {
+          Tools.showSuccessMsg(
+            t.t(
+              "components.content.user.userForm.script.methods.save.success.title"
+            ),
+            t.t(
+              "components.content.user.userForm.script.methods.save.success.msgUpdate"
+            )
+          );
+          this.close(true);
         })
         .catch(err => {
           Tools.showErrorWithApi(

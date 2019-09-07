@@ -31,7 +31,7 @@ const menu = [
       },
       {
         title: t.t("menu.currentUser.logout"),
-        url: "/logout",
+        url: "/login",
         role: "",
         roleStatus: true
       }

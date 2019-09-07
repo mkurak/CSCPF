@@ -92,12 +92,12 @@ const actions = {
   },
   a_storages_user_items_add_api(context, data) {
     return new Promise((resolve, reject) => {
-      if (data.currentPassword !== "")
+      if (!Tools.isNullOrEmpty(data.currentPassword))
         data.currentPassword = sha1(
           data.currentPassword + GlobalEnv.hashCodes.Password
         );
 
-      if (data.newPassword !== "")
+      if (!Tools.isNullOrEmpty(data.newPassword))
         data.newPassword = sha1(
           data.newPassword + GlobalEnv.hashCodes.Password
         );

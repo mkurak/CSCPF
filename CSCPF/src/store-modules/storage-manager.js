@@ -26,6 +26,9 @@ const mutations = {
   },
   m_storages_backgroundJobCount(state, val) {
     state.storages.backgroundJobCount += val;
+  },
+  m_storages_backgroundJobCountReset(state) {
+    state.storages.backgroundJobCount = 0;
   }
 };
 
@@ -57,6 +60,12 @@ const actions = {
   async a_storages_storages_loadStartup(context) {
     if (context.getters.g_storages_storages.length === 0) {
       return;
+    }
+
+    for (let i = 0; i < context.getters.g_storages_storages.length; i++) {
+      await context.dispatch(
+        context.getters.g_storages_storages[i].clearActionName
+      );
     }
 
     let findStorages = context.getters.g_storages_storages.filter(storage => {
