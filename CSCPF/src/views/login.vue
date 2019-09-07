@@ -27,6 +27,7 @@
                       counter="256"
                       required
                       :rules="emailValidation"
+                      placeholder=" "
                     ></v-text-field>
                     <v-text-field
                       id="password"
@@ -38,6 +39,7 @@
                       counter="32"
                       required
                       :rules="passValidation"
+                      placeholder=" "
                     ></v-text-field>
                   </v-form>
                 </v-card-text>
