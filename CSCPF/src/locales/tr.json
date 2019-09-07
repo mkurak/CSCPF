@@ -351,7 +351,7 @@
                         "editLabel": "Kullanıcı Bilgilerini Güncelle",
                         "removeLabel": "Kullanıcıyı Sil",
                         "manageUserInGroup": "Kullanıcının Dahil Olduğu Gruplar",
-                        "manageUserInRoles": "Kullanıcın Yetkilerini"
+                        "manageUserInRoles": "Kullanıcının Yetkileri"
                     }
                 },
                 "script": {
@@ -413,7 +413,6 @@
                                 "actions": "İşlemler"
                             }
                         }
-
                     },
                     "methods": {
                         "deleteItem": {
