@@ -99,7 +99,7 @@ const showErrorMsg = (title, msg) => {
 
 const showErrorMsgAndGoLogin = (title, msg) => {
   showErrorMsg(title, msg);
-  // TODO: Here an error message should be sent to the login screen. It's better if the first load is triggered (?)
+  store.push("/login");
 };
 
 const apiGet = url => {
@@ -417,7 +417,6 @@ const modelInjectHash = (model, secretKey) => {
   Object.values(model).forEach(val => {
     if (!isNullOrEmpty(val)) compileHasString += val;
   });
-  console.log(compileHasString);
   model.Hash = sha1(compileHasString + secretKey);
 
   return model;

@@ -215,8 +215,12 @@ export default {
       if (saveComplate === true) {
         if (this.currentUser.id === this.g_session_currentUser.id) {
           Tools.showSuccessMsg(
-            "Durum Bilgisi",
-            "Güncellenen kullanıcı bilgileri sizin bilgileriniz olduğundan, güvenlik nedeniyle oturumunuz kapatılacaktır. Lütfen yeniden giriş yapın."
+            t.t(
+              "components.content.user.userForm.script.methods.close.success.title"
+            ),
+            t.t(
+              "components.content.user.userForm.script.methods.close.success.msg"
+            )
           );
           this.$store.commit("m_storages_backgroundJobCountReset");
           this.$router.push("/login");

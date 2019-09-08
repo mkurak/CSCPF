@@ -42,19 +42,23 @@
         <v-card flat>
           <v-card-text>
             <v-layout tag="v-card-text" text-left wrap>
-              <v-flex tag="strong" xs6 text-right mr-4 mb-2>Eklenme:</v-flex>
+              <v-flex tag="strong" xs6 text-right mr-4 mb-2>
+                {{ $("components.content.user.userDetails.template.added") }}
+              </v-flex>
               <v-flex xs5>
                 {{ user.addingDate | formatDate }}
                 ({{ getUser_fullName(user.addingUserId) }})
               </v-flex>
-              <v-flex tag="strong" xs6 text-right mr-4 mb-2
-                >Son Güncelleme:</v-flex
-              >
+              <v-flex tag="strong" xs6 text-right mr-4 mb-2>
+                {{ $("components.content.user.userDetails.template.updated") }}
+              </v-flex>
               <v-flex xs5>
                 {{ user.updatingDate | formatDate }}
                 ({{ getUser_fullName(user.updatingUserId) }})
               </v-flex>
-              <v-flex tag="strong" xs6 text-right mr-4 mb-2>Durum:</v-flex>
+              <v-flex tag="strong" xs6 text-right mr-4 mb-2>
+                {{ $("components.content.user.userDetails.template.status") }}
+              </v-flex>
               <v-flex xs5>
                 {{
                   user.status
@@ -64,9 +68,13 @@
               </v-flex>
               <v-flex xs12 text-center>
                 <br />
-                <v-btn outlined color="info" @click="goMessage()"
-                  >MESAJ GÖNDER</v-btn
-                >
+                <v-btn outlined color="info" @click="goMessage()">
+                  {{
+                    $(
+                      "components.content.user.userDetails.template.sendMessageBtnText"
+                    )
+                  }}
+                </v-btn>
               </v-flex>
             </v-layout>
           </v-card-text>

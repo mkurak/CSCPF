@@ -240,7 +240,10 @@
             }
         },
         "notifications": {
-            "screenTitle": "Bildirimleriniz"
+            "template": {
+                "screenTitle": "Bildirimleriniz",
+                "removeTooltip": "Bu bildirimi sil"
+            }
         },
         "socketUsers": {
             "screenTitle": "Sistemdeki Kullanıcılar",
@@ -339,7 +342,8 @@
                         "a1": "Eğer bilgisayarınızın RAM kapasitesi yüksekse ve bu uygulama çalışırken bu belleğin çoğu boştaysa (diğer uygulamalar yoğun kaynak kullanmıyorsa), mümkün mertebe depoların koruma özelliği açılmalıdır. Böylece depolar bir kere doldurulacak ve Socket bağlantısı sayesinde güncel olacaklardır. Fakat bu özelliği açtığınız her deponun, sahip olduğu veri yoğunluğuna göre hafızayı doldurucağını unutmamak ve analiz yaparak bunu organize etmek gerekir. Yani, RAM kapasiteniz ne kadar yüksek olursa olsun, eğer keyfi olarak tüm depoların koruma özelliğini açarsanız ve veri tabanınızdaki veri yoğunluğu yüksekse, belli bir zaman sonra uygulamanızın \"patlaması\" ve sekmenin yanıt vermez duruma gelmesi çok muhtemeldir.",
                         "a2": "Eğer RAM kapasiteniz düşükse yada bu uygulamayı kullanırken başka büyük uygulamaları da kullandığınız için kaynak kısıtlıysa, mümkün mertebe az sayıda deponun koruma özelliği açılmalıdır. Böyle olduğunda size ekranlarınızın açılmasında ve işlemlerin yapılmasında çok az bir zaman kaybı yaşatacaktır (kimi işlemlerde belki fark edilmeyecek kadar az, kimi işlemlerde de oldukça farkedilecek kadar çok). Fakat her deponun verisine ihtiyaç duyulduğunda API'den çekilecektir. Yani, ya hafıza kaynağını kullanarak işlem süresinden kazanıp, internet kullanımından ve sunucu yükünden kısacaksınız, yada işlem süresindeki kazanımı feda ederek internet kullanımını ve sunucu yükünü arttıracaksınız. Bu tercihi bilgisayarınıza ve tüm kaynaklarınıza göre (sunucu, internet, vd.) iyi analiz ederek yapmalısınız."
                     }
-                }
+                },
+                "saveBtnText": "DEĞİŞİKLİKLERİ KAYDET"
             }
         },
         "userManagement": {
@@ -413,6 +417,7 @@
                                 "actions": "İşlemler"
                             }
                         }
+
                     },
                     "methods": {
                         "deleteItem": {
@@ -429,6 +434,12 @@
                             "errorTitle": "İşlem Başarısız!"
                         }
                     }
+                }
+            },
+            "roles": {
+                "template": {
+                    "title": "Yetki Tanımları",
+                    "desc": "Aşağıdaki listede, sistemde bulunan tüm yetki tanımları yer almaktadır. Bu tanımlarla ilgili herhangi bir işlem yapamazsınız. Aşağıdaki liste ile sadece yetki tanımlarıyla ilgili bilgi verilmek istenmiştir. Bu yetkiler sistem yapımcıları tarafından sisteme eklenmektedir ve ihtiyaca göre kullanılmaktadır."
                 }
             }
         },
@@ -625,6 +636,12 @@
                                     "msg": "İşlem başarılı bir şekilde gerçekleşti ve kullanıcı silindi (pasif duruma getirildi)"
                                 },
                                 "errorTitle": "İşlem Başarısız!"
+                            },
+                            "close": {
+                                "success": {
+                                    "title": "Durum Bilgisi",
+                                    "msg": "Güncellenen kullanıcı bilgileri sizin bilgileriniz olduğundan, güvenlik nedeniyle oturumunuz kapatılacaktır. Lütfen yeniden giriş yapın."
+                                }
                             }
                         }
                     },
@@ -642,6 +659,27 @@
                             "passHint": "şifre en az 8, en fazla 32 karakter olmalıdır.",
                             "cancelBtnText": "VAZGEÇ",
                             "saveBtnText": "KAYDET"
+                        }
+                    }
+                },
+                "userDetails": {
+                    "template": {
+                        "added": "Eklenme:",
+                        "updated": "Son Güncelleme:",
+                        "status": "Durum:",
+                        "sendMessageBtnText": "MESAJ GÖNDER"
+                    }
+                },
+                "userInRolesManage": {
+                    "template": {
+                        "checkGroup": " (gruptan)",
+                        "checkGroupFalse": ""
+                    },
+                    "script": {
+                        "methods": {
+                            "save": {
+                                "loading": "Kaydediliyor..."
+                            }
                         }
                     }
                 }
@@ -767,6 +805,13 @@
                             "msg": "Güncelleme başarılı bir şekilde gerçekleştirildi."
                         }
                     }
+                }
+            }
+        },
+        "layout": {
+            "socketUpdater": {
+                "template": {
+                    "statusText": "Socket verileri güncelliyor..."
                 }
             }
         }

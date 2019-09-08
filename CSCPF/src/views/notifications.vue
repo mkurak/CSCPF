@@ -2,7 +2,7 @@
   <v-card v-if="contentViewStatus">
     <v-card-title
       :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
-      >{{ $t("views.notifications.screenTitle") }}</v-card-title
+      >{{ $t("views.notifications.template.screenTitle") }}</v-card-title
     >
     <v-layout justify-space-between pa-4>
       <v-flex xs12>
@@ -34,7 +34,9 @@
                       <v-icon color="red" v-on="on">mdi-delete</v-icon>
                     </v-btn>
                   </template>
-                  <span>Bu bildirimi sil</span>
+                  <span>
+                    {{ $t("views.notifications.template.removeTooltip") }}
+                  </span>
                 </v-tooltip>
               </v-list-item-action>
             </v-list-item>

@@ -2,17 +2,13 @@
   <v-card v-if="contentViewStatus">
     <v-card-title
       :class="[GlobalEnv.layout.titleStateBgColor, 'white--text', 'headline']"
-      >Yetki Tanımları</v-card-title
     >
+      {{ $t("views.userManagement.roles.template.title") }}
+    </v-card-title>
     <v-layout justify-space-between pa-4>
       <v-flex>
         <p class="body-2">
-          Aşağıdaki listede, sistemde bulunan tüm yetki tanımları yer
-          almaktadır. Bu tanımlarla ilgili herhangi bir işlem yapamazsınız.
-          Aşağıdaki liste ile sadece yetki tanımlarıyla ilgili bilgi verilmek
-          istenmiştir.
-          <br />Bu yetkiler sistem yapımcıları tarafından sisteme eklenmektedir
-          ve ihtiyaca göre kullanılmaktadır.
+          {{ $t("views.userManagement.roles.template.desc") }}
         </p>
         <v-sheet class="pa-4 indigo lighten-3 mr-2">
           <v-text-field

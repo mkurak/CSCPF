@@ -118,8 +118,9 @@
                 size="medium"
                 elevation="0"
                 @click="applyChanges"
-                >Değişiklikleri Kaydet</v-btn
               >
+                {{ $t("views.hub.template.saveBtnText") }}
+              </v-btn>
             </v-col>
             <v-col cols="12" class="pt-12">
               <v-divider class="pb-12"></v-divider>

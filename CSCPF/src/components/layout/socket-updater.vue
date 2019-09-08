@@ -5,9 +5,9 @@
       size="20"
       width="2"
     ></v-progress-circular>
-    <span v-if="active" class="pl-2 caption"
-      >Socket verileri güncelliyor...</span
-    >
+    <span v-if="active" class="pl-2 caption">
+      {{ $t("components.layout.socketUpdater.template.statusText") }}
+    </span>
   </div>
 </template>
 

@@ -17,7 +17,16 @@
         <v-col v-for="role in g_storages_role_items" :key="role.id" cols="12">
           <v-checkbox
             v-model="selectedRoles"
-            :label="role.roleName + (checkGroup(role.id) ? ' (gruptan)' : '')"
+            :label="
+              role.roleName +
+                (checkGroup(role.id)
+                  ? t.t(
+                      'components.content.user.userInRolesManage.template.checkGroup'
+                    )
+                  : t.t(
+                      'components.content.user.userInRolesManage.template.checkGroupFalse'
+                    ))
+            "
             :value="role.id"
             hide-details
             color="primary"
@@ -95,7 +104,12 @@ export default {
       this.$emit("close");
     },
     save() {
-      this.$store.commit("m_layout_loading_msg", "Kaydediliyor...");
+      this.$store.commit(
+        "m_layout_loading_msg",
+        t.t(
+          "components.content.user.userInRolesManage.script.methods.save.loading"
+        )
+      );
       this.sendProcessStatus = true;
 
       Tools.showConfirmMsg(
