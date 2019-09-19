@@ -209,6 +209,7 @@ const actions = {
                 }
                 resolve();
               });
+          else context.commit("m_storages_backgroundJobCount", -1);
           break;
         case "update":
           if (targetStorage.syncSettings.update.enable)
@@ -244,6 +245,7 @@ const actions = {
                 }
                 resolve();
               });
+          else context.commit("m_storages_backgroundJobCount", -1);
           break;
         case "remove":
           if (targetStorage.syncSettings.remove.enable)
@@ -279,6 +281,7 @@ const actions = {
                 }
                 resolve();
               });
+          else context.commit("m_storages_backgroundJobCount", -1);
           break;
         case "changeRoles":
           if (targetStorage.syncSettings.changeRoles.enable)
@@ -317,6 +320,7 @@ const actions = {
                 }
                 resolve();
               });
+          else context.commit("m_storages_backgroundJobCount", -1);
           break;
       }
     });

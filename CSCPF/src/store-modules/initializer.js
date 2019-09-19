@@ -78,6 +78,22 @@ const actions = {
 
           context.commit(
             "m_layout_loading_msg",
+            i18n.t("initializer.start.loadCurrentUser")
+          );
+
+          return context.dispatch("a_session_currentUser_load");
+        })
+        .then(() => {
+          if (context.getters.g_session_token === null) {
+            context.commit("m_initializer_systemLoadStatus", true);
+            context.commit("m_initializer_loginStatus", false);
+            context.commit("m_layout_loading_view", false);
+            resolve();
+            return;
+          }
+
+          context.commit(
+            "m_layout_loading_msg",
             i18n.t("initializer.start.loadStorageLocalData")
           );
 
@@ -115,22 +131,7 @@ const actions = {
 
           return context.dispatch("a_storages_storages_saveLocal");
         })
-        .then(() => {
-          if (context.getters.g_session_token === null) {
-            context.commit("m_initializer_systemLoadStatus", true);
-            context.commit("m_initializer_loginStatus", false);
-            context.commit("m_layout_loading_view", false);
-            resolve();
-            return;
-          }
 
-          context.commit(
-            "m_layout_loading_msg",
-            i18n.t("initializer.start.loadCurrentUser")
-          );
-
-          return context.dispatch("a_session_currentUser_load");
-        })
         .then(() => {
           if (context.getters.g_session_token === null) {
             context.commit("m_initializer_systemLoadStatus", true);

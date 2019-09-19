@@ -1,5 +1,5 @@
 <template>
-  <v-overlay :value="g_layout_loading_view">
+  <v-overlay :value="g_layout_loading_view" z-index="99999">
     <v-container fluid class="text-center">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
       <v-spacer></v-spacer>
