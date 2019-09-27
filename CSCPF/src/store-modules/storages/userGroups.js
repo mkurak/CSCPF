@@ -13,6 +13,13 @@ const state = {
 const getters = {
   g_storages_userGroups_items(state) {
     return state.storages.userGroups.items;
+  },
+  g_storages_userGroups_items_get(state) {
+    return id => {
+      return _.find(state.storages.userGroups.items, function(o) {
+        return o.id === id;
+      });
+    };
   }
 };
 
