@@ -20,10 +20,10 @@
             :label="
               role.roleName +
                 (checkGroup(role.id)
-                  ? t.t(
+                  ? $t(
                       'components.content.user.userInRolesManage.template.checkGroup'
                     )
-                  : t.t(
+                  : $t(
                       'components.content.user.userInRolesManage.template.checkGroupFalse'
                     ))
             "
@@ -104,12 +104,6 @@ export default {
       this.$emit("close");
     },
     save() {
-      this.$store.commit(
-        "m_layout_loading_msg",
-        t.t(
-          "components.content.user.userInRolesManage.script.methods.save.loading"
-        )
-      );
       this.sendProcessStatus = true;
 
       Tools.showConfirmMsg(
@@ -127,6 +121,13 @@ export default {
           this.$store.commit("m_layout_loading_view", false);
           this.sendProcessStatus = false;
         } else {
+          this.$store.commit(
+            "m_layout_loading_msg",
+            t.t(
+              "components.content.user.userInRolesManage.script.methods.save.loading"
+            )
+          );
+
           this.selectedRoles.forEach(item => {
             if (!this.checkGroup(item)) {
               this.selectedRoles2.push(item);
