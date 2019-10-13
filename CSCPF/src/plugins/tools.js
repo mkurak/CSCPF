@@ -520,6 +520,8 @@ const getImage = (root, path, errorImage) => {
 };
 
 const modelInjectHash = (model, secretKey) => {
+  if (model.Hash) delete model.Hash;
+
   let compileHasString = "";
   Object.values(model).forEach(val => {
     if (!isNullOrEmpty(val)) compileHasString += val;
