@@ -11,7 +11,7 @@
       </v-list-item>
       <v-list-group
         v-for="item in getMenuItems(g_menu_menus)"
-        :key="item.title"
+        :key="item.id"
         v-model="item.active"
         :prepend-icon="item.icon"
         no-action
