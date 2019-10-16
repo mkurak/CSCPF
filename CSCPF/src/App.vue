@@ -17,12 +17,12 @@
 <script>
 import { mapGetters } from "vuex";
 
-import MenuComponent from "./components/layout/menu";
-import CurrentUserMenuComponent from "./components/layout/current-user-menu";
-import HeaderComponent from "./components/layout/header";
-import FooterComponent from "./components/layout/footer";
-import LoadingComponent from "./components/layout/loading";
-import VSnackbarQueue from "./components/app/VSnackbarQueue";
+import MenuComponent from "@/core/components/layout/menu";
+import CurrentUserMenuComponent from "@/core/components/layout/current-user-menu";
+import HeaderComponent from "@/core/components/layout/header";
+import FooterComponent from "@/core/components/layout/footer";
+import LoadingComponent from "@/core/components/layout/loading";
+import VSnackbarQueue from "@/core/components/app/VSnackbarQueue";
 
 export default {
   components: {

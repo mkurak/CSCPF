@@ -1,18 +1,18 @@
 import Vue from "vue";
-import "./plugins/axios";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import vuetify from "./plugins/vuetify";
-import i18n from "./plugins/i18n";
-import projectInit from "./project/integration/project-main-init";
-import GlobalEnv from "./constants/global-env";
-import Tools from "./plugins/tools";
+import "@/core/plugins/axios";
+import App from "@/App.vue";
+import router from "@/core/router";
+import store from "@/core/store";
+import vuetify from "@/core/plugins/vuetify";
+import i18n from "@/core/plugins/i18n";
+import projectInit from "@/project/integration/project-main-init";
+import GlobalEnv from "@/core/constants/global-env";
+import Tools from "@/core/plugins/tools";
 
 Vue.config.productionTip = false;
 
 // filters
-import "./filters/formatDate";
+import "@/core/filters/formatDate";
 
 const vue = new Vue({
   router,
