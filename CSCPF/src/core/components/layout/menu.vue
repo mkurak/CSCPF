@@ -1,5 +1,9 @@
 <template>
   <v-navigation-drawer v-model="drawerViewStatus" app clipped fixed>
+    <v-img
+      v-if="GlobalEnv.layout.menuTopLogo.length > 0"
+      :src="GlobalEnv.layout.menuTopLogo"
+    ></v-img>
     <v-list dense>
       <v-list-item to="/">
         <v-list-item-icon>
@@ -38,9 +42,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import GlobalEnv from "@/core/constants/global-env";
 
 export default {
-  data: () => ({}),
+  data: () => ({
+    GlobalEnv
+  }),
   computed: {
     ...mapGetters(["g_layout_drawerStatus", "g_menu_menus"]),
     drawerViewStatus: {

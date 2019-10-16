@@ -84,7 +84,9 @@ const globalEnv = {
       url: "https://www.codescientific.com",
       label: "Code Scientific"
     },
-    titleStateBgColor: "indigo"
+    titleStateBgColor: "indigo",
+    viewUserManagementMenus: true,
+    menuTopLogo: ""
   },
   notification: {
     route: "/notifications"
