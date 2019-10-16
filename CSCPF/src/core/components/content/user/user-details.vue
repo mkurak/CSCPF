@@ -43,21 +43,21 @@
           <v-card-text>
             <v-layout tag="v-card-text" text-left wrap>
               <v-flex tag="strong" xs6 text-right mr-4 mb-2>
-                {{ $("components.content.user.userDetails.template.added") }}
+                {{ $t("components.content.user.userDetails.template.added") }}
               </v-flex>
               <v-flex xs5>
                 {{ user.addingDate | formatDate }}
                 ({{ getUser_fullName(user.addingUserId) }})
               </v-flex>
               <v-flex tag="strong" xs6 text-right mr-4 mb-2>
-                {{ $("components.content.user.userDetails.template.updated") }}
+                {{ $t("components.content.user.userDetails.template.updated") }}
               </v-flex>
               <v-flex xs5>
                 {{ user.updatingDate | formatDate }}
                 ({{ getUser_fullName(user.updatingUserId) }})
               </v-flex>
               <v-flex tag="strong" xs6 text-right mr-4 mb-2>
-                {{ $("components.content.user.userDetails.template.status") }}
+                {{ $t("components.content.user.userDetails.template.status") }}
               </v-flex>
               <v-flex xs5>
                 {{
@@ -70,7 +70,7 @@
                 <br />
                 <v-btn outlined color="info" @click="goMessage()">
                   {{
-                    $(
+                    $t(
                       "components.content.user.userDetails.template.sendMessageBtnText"
                     )
                   }}
