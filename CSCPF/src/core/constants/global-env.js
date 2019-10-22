@@ -1,12 +1,12 @@
 import ProjectHashCodes from "@/project/integration/project-env-hash-codes";
 import ProjectEnv from "@/project/integration/project-env";
 import ProjectApiUrls from "@/project/integration/project-api-urls";
-
-const _productionUrl = "http://localhost:51684"; // "http://localhost:61882"; // 65131
-const _developmentUrl = "http://localhost:51684"; //"http://localhost:61882"; // 65131
+import ProjectEnvInject from "@/project/integration/global-env-inject";
 
 const globalEnv = {
   system: {
+    productionUrl: "http://localhost:51684",
+    developmentUrl: "http://localhost:51684",
     tokenKey: "cscpf_token",
     settingsLocalKey: "cscpf_settings",
     notificationKey: "cscpf_notifications",
@@ -150,22 +150,24 @@ const globalEnv = {
 
 globalEnv.api.base =
   process.env.NODE_ENV === "production"
-    ? _productionUrl + "/api"
-    : _developmentUrl + "/api";
+    ? globalEnv.system.productionUrl + "/api"
+    : globalEnv.system.developmentUrl + "/api";
 
 globalEnv.socket.url =
   process.env.NODE_ENV === "production"
-    ? _productionUrl + "/signalr"
-    : _developmentUrl + "/signalr";
+    ? globalEnv.system.productionUrl + "/signalr"
+    : globalEnv.system.developmentUrl + "/signalr";
 
 globalEnv.socketUsers.profilePic.path =
   process.env.NODE_ENV === "production"
-    ? _productionUrl + "/Storage/User/ProfilePics/"
-    : _developmentUrl + "/Storage/User/ProfilePics/";
+    ? globalEnv.system.productionUrl + "/Storage/User/ProfilePics/"
+    : globalEnv.system.developmentUrl + "/Storage/User/ProfilePics/";
 
 globalEnv.socketUsers.profileBgPic.path =
   process.env.NODE_ENV === "production"
-    ? _productionUrl + "/Storage/User/ProfileBgPics/"
-    : _developmentUrl + "/Storage/User/ProfileBgPics/";
+    ? globalEnv.system.productionUrl + "/Storage/User/ProfileBgPics/"
+    : globalEnv.system.developmentUrl + "/Storage/User/ProfileBgPics/";
+
+ProjectEnvInject(globalEnv);
 
 export default globalEnv;
