@@ -1,6 +1,6 @@
 import t from "@/core/plugins/i18n";
 import projectMenu from "@/project/integration/data/drawer-menu";
-import projectEnv from "@/project/integration/project-env";
+import GlobalEnv from "@/core/constants/global-env";
 
 const menu = [];
 
@@ -40,11 +40,7 @@ menu.push({
   ]
 });
 
-let addUMMenu = true;
-if (projectEnv.core && projectEnv.core.layout)
-  addUMMenu = projectEnv.core.layout.viewUserManagementMenus;
-
-if (addUMMenu) {
+if (GlobalEnv.layout.viewUserManagementMenus) {
   menu.push({
     title: t.t("menu.userManagement.userManagement"),
     icon: "mdi-account-group",
@@ -77,5 +73,19 @@ if (addUMMenu) {
 }
 
 const menu2 = [...menu, ...projectMenu];
+
+const moduleMenu = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-menu.js$/i
+);
+
+if (moduleMenu.length > 0) {
+  moduleMenu.keys().forEach(key => {
+    moduleMenu(key).default.forEach(mm => {
+      menu2.push(mm);
+    });
+  });
+}
 
 export default menu2;

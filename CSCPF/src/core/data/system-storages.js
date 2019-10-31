@@ -1,5 +1,22 @@
 import ProjectStorages from "@/project/integration/project-storages";
 
+let modulesStoragesData = [];
+
+const modulesStorages = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-storages.js$/i
+);
+
+if (modulesStorages.length > 0) {
+  modulesStorages.keys().forEach(key => {
+    modulesStoragesData = [
+      ...modulesStoragesData,
+      ...modulesStorages(key).default
+    ];
+  });
+}
+
 const storagesData = [
   {
     key: "UserManagement_Role",
@@ -172,7 +189,8 @@ const storagesData = [
       }
     }
   },
-  ...ProjectStorages
+  ...ProjectStorages,
+  ...modulesStoragesData
 ];
 
 export default storagesData;

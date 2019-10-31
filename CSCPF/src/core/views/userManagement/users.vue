@@ -18,7 +18,7 @@
       <v-layout justify-space-between pa-4>
         <v-flex>
           <v-data-table
-            :headers="datatable.headers"
+            :headers="getHeaders"
             :items="items"
             :search="datatable.search"
             class="elevation-1"
@@ -190,6 +190,9 @@ import UserFormComponent from "@/core/components/content/user/user-form";
 import UserInGroupsManageComponent from "@/core/components/content/user/user-in-groups-manage";
 import UserInRolesManageComponent from "@/core/components/content/user/user-in-roles-manage";
 import { setTimeout } from "timers";
+import projectUserListCustomFilter from "@/project/integration/project-user-list-custom-filter";
+import projectHeaders from "@/project/integration/user-list-datatable-headers";
+import projectListData from "@/project/integration/user-list-datatable-items";
 
 export default {
   components: {
@@ -257,7 +260,15 @@ export default {
   computed: {
     ...mapGetters(["g_storages_user_items", "g_storages_user_fullName"]),
     items() {
-      return this.g_storages_user_items;
+      const users = projectUserListCustomFilter(
+        this,
+        this.g_storages_user_items
+      );
+
+      return projectListData.joinListItems(users, this.$store);
+    },
+    getHeaders() {
+      return projectHeaders.addProjectHeaders(this.datatable.headers);
     }
   },
   async mounted() {

@@ -4,84 +4,118 @@
     <v-divider></v-divider>
     <v-card-text class="pt-5">
       <v-form ref="actionForm" v-model="formValid" lazy-validation>
-        <v-text-field
-          v-model="currentUser.name"
-          :label="
-            $t('components.content.user.userForm.template.form.labels.name')
-          "
-          clearable
-          :counter="256"
-          :rules="validations.nameValidation"
-          :disabled="sendProcessStatus"
-        ></v-text-field>
-        <v-text-field
-          v-model="currentUser.surname"
-          :label="
-            $t('components.content.user.userForm.template.form.labels.surname')
-          "
-          clearable
-          :counter="256"
-          :rules="validations.surnameValidation"
-          :disabled="sendProcessStatus"
-        ></v-text-field>
-        <v-text-field
-          v-model="currentUser.userName"
-          :label="
-            $t('components.content.user.userForm.template.form.labels.userName')
-          "
-          clearable
-          :counter="32"
-          :rules="validations.userNameValidation"
-          :disabled="sendProcessStatus"
-        ></v-text-field>
-        <v-text-field
-          v-model="currentUser.email"
-          :label="
-            $t('components.content.user.userForm.template.form.labels.email')
-          "
-          clearable
-          :counter="256"
-          :rules="validations.emailValidation"
-          :disabled="sendProcessStatus"
-        ></v-text-field>
-        <v-text-field
-          v-if="showCurrentPassInput"
-          v-model="currentUser.currentPass"
-          :label="
-            $t(
-              'components.content.user.userForm.template.form.labels.currentPass'
-            )
-          "
-          clearable
-          :counter="32"
-          :hint="$t('components.content.user.userForm.template.form.passHint')"
-          :type="show.currentPass ? 'text' : 'password'"
-          :disabled="sendProcessStatus"
-        ></v-text-field>
-        <v-text-field
-          v-model="currentUser.newPass"
-          :label="
-            $t('components.content.user.userForm.template.form.labels.newPass')
-          "
-          clearable
-          :counter="32"
-          :hint="$t('components.content.user.userForm.template.form.passHint')"
-          :type="show.newPass ? 'text' : 'password'"
-          :disabled="sendProcessStatus"
-        ></v-text-field>
-        <v-text-field
-          v-model="currentUser.newPassAgain"
-          :label="
-            $t(
-              'components.content.user.userForm.template.form.labels.newPassAgain'
-            )
-          "
-          clearable
-          :counter="32"
-          :hint="$t('components.content.user.userForm.template.form.passHint')"
-          :type="show.newPassAgain ? 'text' : 'password'"
-          :disabled="sendProcessStatus"
-        ></v-text-field>
+        <v-row>
+          <v-col cols="6">
+            <v-text-field
+              v-model="currentUser.name"
+              :label="
+                $t('components.content.user.userForm.template.form.labels.name')
+              "
+              clearable
+              :counter="256"
+              :rules="validations.nameValidation"
+              :disabled="sendProcessStatus"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="currentUser.surname"
+              :label="
+                $t(
+                  'components.content.user.userForm.template.form.labels.surname'
+                )
+              "
+              clearable
+              :counter="256"
+              :rules="validations.surnameValidation"
+              :disabled="sendProcessStatus"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6">
+            <v-text-field
+              v-model="currentUser.userName"
+              :label="
+                $t(
+                  'components.content.user.userForm.template.form.labels.userName'
+                )
+              "
+              clearable
+              :counter="32"
+              :rules="validations.userNameValidation"
+              :disabled="sendProcessStatus"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="currentUser.email"
+              :label="
+                $t(
+                  'components.content.user.userForm.template.form.labels.email'
+                )
+              "
+              clearable
+              :counter="256"
+              :rules="validations.emailValidation"
+              :disabled="sendProcessStatus"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col v-if="showCurrentPassInput" cols="6">
+            <v-text-field
+              v-model="currentUser.currentPass"
+              :label="
+                $t(
+                  'components.content.user.userForm.template.form.labels.currentPass'
+                )
+              "
+              clearable
+              :counter="32"
+              :hint="
+                $t('components.content.user.userForm.template.form.passHint')
+              "
+              :type="show.currentPass ? 'text' : 'password'"
+              :disabled="sendProcessStatus"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="currentUser.newPass"
+              :label="
+                $t(
+                  'components.content.user.userForm.template.form.labels.newPass'
+                )
+              "
+              clearable
+              :counter="32"
+              :hint="
+                $t('components.content.user.userForm.template.form.passHint')
+              "
+              :type="show.newPass ? 'text' : 'password'"
+              :disabled="sendProcessStatus"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="currentUser.newPassAgain"
+              :label="
+                $t(
+                  'components.content.user.userForm.template.form.labels.newPassAgain'
+                )
+              "
+              clearable
+              :counter="32"
+              :hint="
+                $t('components.content.user.userForm.template.form.passHint')
+              "
+              :type="show.newPassAgain ? 'text' : 'password'"
+              :disabled="sendProcessStatus"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
         <ProjectUserForm ref="projectForm" :user="user"></ProjectUserForm>
       </v-form>
     </v-card-text>
@@ -238,20 +272,29 @@ export default {
       this.$emit("close");
     },
     save() {
-      if (this.currentUser.id === 0) {
-        if (!this.save_add_validation()) return;
-      } else {
-        if (!this.save_update_validation()) return;
+      if (!this.$refs.actionForm.validate()) {
+        return;
       }
 
-      this.sendProcessStatus = true;
-      this.$store.commit(
-        "m_layout_loading_msg",
-        t.t("components.content.user.userForm.script.methods.save.loading")
-      );
+      this.$refs.projectForm
+        .validation()
+        .then(() => {
+          if (this.currentUser.id === 0) {
+            if (!this.save_add_validation()) return;
+          } else {
+            if (!this.save_update_validation()) return;
+          }
 
-      if (this.currentUser.id > 0) this.save_update_project();
-      else this.save_add_user();
+          this.sendProcessStatus = true;
+          this.$store.commit(
+            "m_layout_loading_msg",
+            t.t("components.content.user.userForm.script.methods.save.loading")
+          );
+
+          if (this.currentUser.id > 0) this.save_update_project();
+          else this.save_add_user();
+        })
+        .catch(() => {});
     },
     save_add_validation() {
       if (Tools.isNullOrEmpty(this.currentUser.newPass)) {

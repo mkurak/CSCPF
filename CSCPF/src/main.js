@@ -31,4 +31,18 @@ if (!Tools.isNullOrEmpty(localeLang)) {
   vue.$i18n.locale = GlobalEnv.layout.lang.default;
 }
 
+const moduleInits = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-main-init.js$/i
+);
+
+if (moduleInits.length > 0) {
+  moduleInits.keys().forEach(key => {
+    moduleInits(key).default(vue);
+  });
+}
+
+window.vue = vue;
+
 export default vue;

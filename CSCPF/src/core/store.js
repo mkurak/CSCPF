@@ -22,6 +22,23 @@ import UserGroupsStorage from "@/core/store-modules/storages/userGroups";
 // Project Modules
 import ProjectModules from "@/project/integration/project-store-modules";
 
+let moduleStories = {};
+
+const modulesStories = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-stories.js$/i
+);
+
+if (modulesStories.length > 0) {
+  modulesStories.keys().forEach(key => {
+    moduleStories = {
+      ...moduleStories,
+      ...modulesStories(key).default
+    };
+  });
+}
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -43,6 +60,7 @@ export default new Vuex.Store({
     RoleStorage,
     UserStorage,
     UserGroupsStorage,
-    ...ProjectModules
+    ...ProjectModules,
+    ...moduleStories
   }
 });

@@ -900,6 +900,10 @@
         "Root_UserManagement_Role_List": {
             "title": "Yetki Tanımları Listesine Erişim Yetkisi",
             "desc": "Bu yetkiye sahip olan kullanıcı, yetki tanımları listesine erişebilir."
+        },
+        "Root_Modules": {
+            "title": "Modüller İçin Üst Düzey Yetki",
+            "desc": "Bu yetkiye sahip olan kullanıcı, tüm modüllerle ilgili tüm işlemleri gerçekleştirebilir."
         }
     }
 }

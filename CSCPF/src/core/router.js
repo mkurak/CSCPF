@@ -20,7 +20,33 @@ import UserManagementUsersView from "@/core/views/userManagement/users.vue";
 import UserManagementGroupsView from "@/core/views/userManagement/groups.vue";
 import UserManagementRolesView from "@/core/views/userManagement/roles.vue";
 
+// Modules Root Route
+import ModulesView from "@/core/views/modules";
+
 Vue.use(Router);
+
+const modulesRoutes = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-routes.js$/i
+);
+
+const moduleRoutesList = [];
+
+if (modulesRoutes.length > 0) {
+  modulesRoutes.keys().forEach(key => {
+    const matched = key.match(/([A-Za-z0-9-_]+)/i);
+    moduleRoutesList.push({
+      path: "/Modules/" + matched[0],
+      name: "modules_" + matched[0],
+      component: ModulesView,
+      meta: {
+        requiresAuth: true
+      },
+      children: modulesRoutes(key).default
+    });
+  });
+}
 
 const router = new Router({
   mode: "history",
@@ -133,6 +159,15 @@ const router = new Router({
         requiresAuth: true
       },
       children: ProjectRouter
+    },
+    {
+      path: "/Modules",
+      name: "modules",
+      component: ModulesView,
+      meta: {
+        requiresAuth: true
+      },
+      children: moduleRoutesList
     }
   ]
 });

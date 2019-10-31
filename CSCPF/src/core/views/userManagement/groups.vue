@@ -251,6 +251,8 @@ import { setTimeout } from "timers";
 import FormComponent from "@/core/components/content/group/form";
 import RolesComponent from "@/core/components/content/group/roles";
 
+import projectUserListCustomFilter from "@/project/integration/project-user-list-custom-filter";
+
 export default {
   components: {
     FormComponent,
@@ -291,7 +293,8 @@ export default {
     ...mapGetters([
       "g_storages_userGroups_items",
       "g_storages_user_getUser",
-      "g_storages_role_items"
+      "g_storages_role_items",
+      "g_storages_user_items"
     ]),
     items() {
       return this.g_storages_userGroups_items;
@@ -321,10 +324,20 @@ export default {
     getGroupUsers() {
       return group => {
         let users = [];
+        let projectUsers = projectUserListCustomFilter(
+          this,
+          this.g_storages_user_items
+        );
         group.users.forEach(user => {
-          let getUser = this.g_storages_user_getUser(user);
-          if (!Tools.isNullOrEmpty(getUser.user))
-            users.push(this.g_storages_user_getUser(user));
+          if (
+            projectUsers.filter(projectUser => {
+              return projectUser.user.id === user;
+            }).length > 0
+          ) {
+            let getUser = this.g_storages_user_getUser(user);
+            if (!Tools.isNullOrEmpty(getUser.user))
+              users.push(this.g_storages_user_getUser(user));
+          }
         });
         return users;
       };

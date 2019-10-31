@@ -3,6 +3,30 @@ import ProjectEnv from "@/project/integration/project-env";
 import ProjectApiUrls from "@/project/integration/project-api-urls";
 import ProjectEnvInject from "@/project/integration/global-env-inject";
 
+const moduleEnvs = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-env.js$/i
+);
+
+const moduleGlobalEnvInjections = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-globalEnv-inject.js$/i
+);
+
+const moduleHashCodes = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-hash-codes.js$/i
+);
+
+const moduleApiUrls = require.context(
+  "@/modules",
+  true,
+  /[A-Za-z0-9-_,\s]+\/module-api-urls.js$/i
+);
+
 const globalEnv = {
   system: {
     productionUrl: "http://localhost:51684",
@@ -61,7 +85,8 @@ const globalEnv = {
     },
     project: {
       ...ProjectApiUrls
-    }
+    },
+    modules: {}
   },
   socket: {
     url: "",
@@ -141,11 +166,13 @@ const globalEnv = {
     },
     Project: {
       ...ProjectHashCodes
-    }
+    },
+    modules: {}
   },
   ProjectEnv: {
     ...ProjectEnv
-  }
+  },
+  modules: {}
 };
 
 globalEnv.api.base =
@@ -169,5 +196,40 @@ globalEnv.socketUsers.profileBgPic.path =
     : globalEnv.system.developmentUrl + "/Storage/User/ProfileBgPics/";
 
 ProjectEnvInject(globalEnv);
+
+const lowerFirstLetter = val => {
+  return val.charAt(0).toLowerCase() + val.slice(1);
+};
+
+if (moduleEnvs.length > 0) {
+  moduleEnvs.keys().forEach(key => {
+    const matched = key.match(/([A-Za-z0-9-_]+)/i);
+    globalEnv.modules[lowerFirstLetter(matched[0])] = moduleEnvs(key).default;
+  });
+}
+
+if (moduleGlobalEnvInjections.length > 0) {
+  moduleGlobalEnvInjections.keys().forEach(key => {
+    moduleGlobalEnvInjections(key).default(globalEnv);
+  });
+}
+
+if (moduleHashCodes.length > 0) {
+  moduleHashCodes.keys().forEach(key => {
+    const matched = key.match(/([A-Za-z0-9-_]+)/i);
+    globalEnv.hashCodes.modules[lowerFirstLetter(matched[0])] = moduleHashCodes(
+      key
+    ).default;
+  });
+}
+
+if (moduleApiUrls.length > 0) {
+  moduleApiUrls.keys().forEach(key => {
+    const matched = key.match(/([A-Za-z0-9-_]+)/i);
+    globalEnv.api.modules[lowerFirstLetter(matched[0])] = moduleApiUrls(
+      key
+    ).default;
+  });
+}
 
 export default globalEnv;
