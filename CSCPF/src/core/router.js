@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Store from "@/core/store";
-import ProjectRouter from "@/project/integration/router";
+import ProjectRouter from "@/project/project-routes";
 
 import HomeView from "@/core/views/home.vue";
 import LoginView from "@/core/views/login.vue";

@@ -1,7 +1,7 @@
-import ProjectHashCodes from "@/project/integration/project-env-hash-codes";
-import ProjectEnv from "@/project/integration/project-env";
-import ProjectApiUrls from "@/project/integration/project-api-urls";
-import ProjectEnvInject from "@/project/integration/global-env-inject";
+import ProjectHashCodes from "@/project/project-hash-codes";
+import ProjectEnv from "@/project/project-env";
+import ProjectApiUrls from "@/project/project-api-urls";
+import ProjectEnvInject from "@/project/project-globalEnv-inject";
 
 const moduleEnvs = require.context(
   "@/modules",
@@ -29,8 +29,8 @@ const moduleApiUrls = require.context(
 
 const globalEnv = {
   system: {
-    productionUrl: "http://localhost:51684",
-    developmentUrl: "http://localhost:51684",
+    productionUrl: "http://localhost:64029",
+    developmentUrl: "http://localhost:64029",
     tokenKey: "cscpf_token",
     settingsLocalKey: "cscpf_settings",
     notificationKey: "cscpf_notifications",

@@ -1,5 +1,5 @@
 import t from "@/core/plugins/i18n";
-import projectMenu from "@/project/integration/data/drawer-menu";
+import projectMenu from "@/project/project-menu";
 import GlobalEnv from "@/core/constants/global-env";
 
 const menu = [];

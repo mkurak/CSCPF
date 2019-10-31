@@ -14,7 +14,7 @@ function loadLocaleMessages() {
     /[A-Za-z0-9-_,\s]+\.json$/i
   );
   const locales2 = require.context(
-    "@/project/integration/locales",
+    "@/project/locales",
     true,
     /[A-Za-z0-9-_,\s]+\.json$/i
   );

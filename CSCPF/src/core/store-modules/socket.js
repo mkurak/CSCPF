@@ -4,7 +4,7 @@ import Tools from "@/core/plugins/tools";
 import i18n from "@/core/plugins/i18n";
 import _ from "underscore";
 import Router from "@/core/router";
-import ProjectHubKeys from "@/project/integration/project-hub-keys";
+import ProjectHubKeys from "@/project/project-hub-keys";
 
 const hubKeys = [
   {

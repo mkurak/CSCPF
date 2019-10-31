@@ -5,7 +5,7 @@ import router from "@/core/router";
 import store from "@/core/store";
 import vuetify from "@/core/plugins/vuetify";
 import i18n from "@/core/plugins/i18n";
-import projectInit from "@/project/integration/project-main-init";
+import projectInit from "@/project/project-main-init";
 import GlobalEnv from "@/core/constants/global-env";
 import Tools from "@/core/plugins/tools";
 

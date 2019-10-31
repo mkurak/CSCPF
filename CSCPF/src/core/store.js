@@ -20,7 +20,7 @@ import UserStorage from "@/core/store-modules/storages/user";
 import UserGroupsStorage from "@/core/store-modules/storages/userGroups";
 
 // Project Modules
-import ProjectModules from "@/project/integration/project-store-modules";
+import ProjectModules from "@/project/project-stories";
 
 let moduleStories = {};
 

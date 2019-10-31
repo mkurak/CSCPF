@@ -1,4 +1,4 @@
-import ProjectStorages from "@/project/integration/project-storages";
+import ProjectStorages from "@/project/project-storages";
 
 let modulesStoragesData = [];
 
