@@ -10,9 +10,12 @@ v3.0.1
 # Status
 No planned development.
 
-# Modules Applied
+# CSBEF Modules Applied
 [UserManagement](https://github.com/mkurak/CSBEF.Module.UserManagement)
 <br>
 [UserActionLog](https://github.com/mkurak/CSBEF.Module.UserActionLog)
 <br>
 [UserCloudManager](https://github.com/mkurak/CSBEF.Module.UserCloudManager)
+
+# CSCPF Modules Applied
+[UserCloudManager](https://github.com/mkurak/CSCPF.Module.UserCloudManager)
