@@ -2,10 +2,11 @@
 It is a control panel application that works with the API prepared with CSBEF. The basic structure required for a control panel application is prepared within this application. For new applications, this application is used as an infrastructure, the screen and business rules required for the actual application are built on this infrastructure.
 
 # Current Version
-v3.0.1
+v3.1.0
 
 # Version Info
-- New feature: module info support in module-env.js
+- Change project file and folder structure
+- Updated dependencies (vuetify, sass)
 
 # Status
 No planned development.
