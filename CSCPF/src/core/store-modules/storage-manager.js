@@ -111,6 +111,8 @@ const actions = {
       return;
     }
 
+    context.commit("m_layout_loading_view", true);
+
     let foundStorages = context.getters.g_storages_storages.filter(storage => {
       return storage.coverData === false && storage.loadStatus == false;
     });
@@ -127,6 +129,8 @@ const actions = {
         foundStorages[i].loadStatus = true;
       }
     }
+
+    context.commit("m_layout_loading_view", false);
   },
   async a_storages_storages_getData(context, storageKey) {
     if (context.getters.g_storages_storages.length === 0) {

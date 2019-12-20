@@ -106,7 +106,7 @@ export default {
         this.$store.dispatch("a_snackbarMessage_add", {
           color: "error",
           message: t.t(
-            "modules.userCloudManager.components.editFile.methods.save.formInvalidMsg"
+            "modules.userCloudManager.components.editFile.script.methods.save.formInvalidMsg"
           )
         });
         return;
@@ -114,7 +114,9 @@ export default {
 
       this.$store.commit(
         "m_layout_loading_msg",
-        t.t("modules.userCloudManager.components.editFile.methods.save.loading")
+        t.t(
+          "modules.userCloudManager.components.editFile.script.methods.save.loading"
+        )
       );
 
       let sendData = {
@@ -131,10 +133,10 @@ export default {
         .then(() => {
           Tools.showSuccessMsg(
             t.t(
-              "modules.userCloudManager.components.editFile.methods.save.successTitle"
+              "modules.userCloudManager.components.editFile.script.methods.save.successTitle"
             ),
             t.t(
-              "modules.userCloudManager.components.editFile.methods.save.successMsg"
+              "modules.userCloudManager.components.editFile.script.methods.save.successMsg"
             )
           );
 

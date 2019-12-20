@@ -229,6 +229,20 @@ const apiGet = url => {
   });
 };
 
+const apiGet2 = url => {
+  return new Promise((resolve, reject) => {
+    delete Axios.defaults.headers.common["Authorization"];
+    Axios.get(url, axiosConfig)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+        reject(GlobalEnv.axios.defaultErrorCode);
+      });
+  });
+};
+
 const apiPost = (url, data) => {
   return new Promise((resolve, reject) => {
     delete Axios.defaults.headers.common["Authorization"];
@@ -647,6 +661,11 @@ const findObjDeep = (items, attrs) => {
   return find;
 };
 
+const lowerFirstLetter = s => {
+  if (typeof s !== "string") return "";
+  return s.charAt(0).toLowerCase() + s.slice(1);
+};
+
 export default {
   validateEmail,
   validatePass,
@@ -655,6 +674,7 @@ export default {
   showErrorMsg,
   showErrorMsgAndGoLogin,
   apiGet,
+  apiGet2,
   apiPost,
   apiAuthGet,
   apiAuthPost,
@@ -674,5 +694,6 @@ export default {
   convertToJSONDate,
   showErrorWithApi,
   giveErrorWithApi,
-  findObjDeep
+  findObjDeep,
+  lowerFirstLetter
 };

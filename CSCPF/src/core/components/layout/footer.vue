@@ -10,6 +10,9 @@
     <SocketUpdaterComponent></SocketUpdaterComponent>
     <v-divider vertical></v-divider>
     <v-spacer></v-spacer>
+    <span style="margin-right: 20px; font-size: 10px">
+      {{ getVersionText }}
+    </span>
     <span>
       &copy; {{ copyrightYear }}
       <a
@@ -42,6 +45,13 @@ export default {
     calcTotalUsing: function() {
       let size = Tools.formatBytes(sizeOf(this.$store.state));
       return size;
+    },
+    getVersionText() {
+      let packageData = require("../../../../package.json");
+      let cscpfVersion = packageData.version;
+      let projectVersion = packageData.projectVersion;
+
+      return "v" + projectVersion + " (core v" + cscpfVersion + ")";
     }
   },
   mounted() {

@@ -173,6 +173,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+  console.clear();
   const path = to.path.toLowerCase();
   if (path === "/init") {
     next();
