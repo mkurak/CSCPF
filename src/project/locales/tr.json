@@ -1,0 +1,9 @@
+{
+  "integration": {
+    "profileEditTabTitle": "",
+    "profileViewTabTitle": ""
+  },
+  "apiErrors": {
+    "none": {}
+  }
+}

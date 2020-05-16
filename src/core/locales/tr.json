@@ -1,0 +1,908 @@
+{
+  "layout": {
+    "loading": {
+      "defaultLoadingMsg": "Hazırlanıyor..."
+    }
+  },
+  "notification": {
+    "toolbar": {
+      "tooltip": "Bildirimleriniz"
+    }
+  },
+  "socketUsers": {
+    "toolbar": {
+      "tooltip": "Aktif/Pasif Kullanıcılar"
+    }
+  },
+  "messages": {
+    "toolbar": {
+      "tooltip": "Mesajlarınız"
+    }
+  },
+  "socket": {
+    "toolbar": {
+      "tooltip": "Sunucu Bağlantısı"
+    },
+    "actions": {
+      "a_socket_users_setOnline": {
+        "msg": "'{userName}' bağlandı."
+      },
+      "a_socket_users_setOffline": {
+        "msg": "'{userName}' ayrıldı."
+      },
+      "a_socket_users_sendNewMessage": {
+        "err": "Mesaj Gönderilemedi!"
+      },
+      "a_socket_users_comeNewMessage": {
+        "info": "{user} mesaj gönderdi..."
+      }
+    }
+  },
+  "initializer": {
+    "start": {
+      "getToken": "Oturum bilgisi alınıyor...",
+      "checkToken": "Oturum bilgisi kontrol ediliyor...",
+      "loadSettings": "Ayarlar alınıyor...",
+      "saveSettings": "Ayarlar kaydediliyor...",
+      "loadCurrentUser": "Profil bilgileriniz alınıyor...",
+      "loadNotifications": "Bildirimler yükleniyor...",
+      "takeUsers": "Kullanıcılar çekiliyor...",
+      "initSocket": "Socket bağlantısı oluşturuluyor...",
+      "startSocket": "Socket bağlantısı kuruluyor...",
+      "loadStorageLocalData": "Veri dopalarının ayarları alınıyor ve işleniyor...",
+      "saveStorageSettingsToLocal": "Veri depolarının ayarları kaydediliyor..."
+    }
+  },
+  "session": {
+    "a_session_currentUser_load": {
+      "error": {
+        "title": "Veriler Çekilemedi!",
+        "msg": "Profil bilgileriniz çekilemedi!"
+      }
+    }
+  },
+  "tools": {
+    "showConfirmMsg": {
+      "title": "İşlem Onayı",
+      "msg": "Bu işleme devam etmek istiyor musunuz?",
+      "info": "",
+      "btnCancel": "Vazgeç",
+      "btnOk": "Onay"
+    },
+    "showSuccessMsg": {
+      "title": "Başarılı İşlem",
+      "btnOk": "Tamam"
+    },
+    "showErrorMsg": {
+      "title": "Başarısız İşlem",
+      "btnOk": "Tamam"
+    }
+  },
+  "api": {
+    "errors": {
+      "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!",
+      "Status400": "İşlem için gerekli izin alınamadı! (400)",
+      "Status401": "İşlem için gerekli izin alınamadı! (401)",
+      "UserManagement": {
+        "Token": {
+          "CreateToken": {
+            "CreateToken_ArgsNull": "Bilgiler doğru bir şekilde aktarılamadığından işlem gerçekleştirilemedi. Lütfen sayfayı yenileyerek tekrar deneyin.",
+            "CreateToken_ArgsParamNull": "Bilgiler doğru bir şekilde aktarılamadığından işlem gerçekleştirilemedi. Lütfen sayfayı yenileyerek tekrar deneyin.",
+            "CreateToken_EmailInValid": "E-Posta adresi geçersiz. Lütfen kontrol edip tekrar deneyin.",
+            "CreateToken_PassInValid": "Şifre geçersiz. Lütfen kontrol edip tekrar deneyin.",
+            "CreateToken_DeviceEmpty": "Cihaz belirtilmemiş. Lütfen sayfayı yenileyerek tekrar deneyin.",
+            "CreateToken_DeviceKeyEmpty": "Cihaz anahtarı belirtilmemiş! Lütfen sayfayı yenileyerek tekrar deneyin.",
+            "CreateToken_UserNotFound": "Kullanıcı bulunamadı! Lütfen bilgileri kontrol ederek işlemi tekrarlayın.",
+            "CreateToken_WrongPass": "Şifre yanlış! Lütfen kontrol ederek işlemi tekrarlayın.",
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!"
+          }
+        },
+        "User": {
+          "ChangeProfileInformations": {
+            "ChangeProfileInformations_ModelValidationFail": "Bilgiler doğrulanamadığından işlem gerçekleştirilemedi!",
+            "ChangeProfileInformations_DataFound": "Kayıt bulunamadığından işlem gerçekleştirilemedi!",
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!"
+          },
+          "ChangeProfilePicture": {
+            "ChangePicture_ModelValidationFail": "Bilgiler düzgün bir şekilde aktarılamadığından işlem gerçekleştirilemedi.",
+            "ChangePicture_UserNotFound": "Kayıt bulunamadığından işlem gerçekleştirilemedi.",
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!"
+          },
+          "ChangeProfileBgPicture": {
+            "ChangePicture_ModelValidationFail": "Bilgiler düzgün bir şekilde aktarılamadığından işlem gerçekleştirilemedi.",
+            "ChangePicture_UserNotFound": "Kayıt bulunamadığından işlem gerçekleştirilemedi.",
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!"
+          },
+          "ChangePassword": {
+            "ChangePassword_ModelValidationFail": "Bilgiler düzgün bir şekilde aktarılamadığından işlem gerçekleştirilemedi.",
+            "ChangePassword_UserNotFound": "Kullanıcı bulunamadığından işlem gerçekleştirilemedi.",
+            "ChangePassword_WrongCurrentPassword": "Mevcut şifreyi yanlış girdiğiniz için şifre güncellenemedi.",
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!"
+          },
+          "Save": {
+            "Save_EmailExists": "E-Posta adresi kullanılıyor!",
+            "Save_UserNameExists": "Kullanıcı adı kullanılıyor!",
+            "Save_UserNotFound": "Kayıt bulunamadı!",
+            "Save_PasswordRequired": "Şifre belirtilmemiş!",
+            "Save_CurrentPasswordWrong": "Mevcut şifre yanlış!",
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!"
+          },
+          "ChangeStatus": {
+            "ChangeStatus_ModelValidationFail": "Bilgiler doğru bir şekilde iletilemedi!",
+            "ChangeStatus_DataNotFound": "Kayıt bulunamadı!",
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!"
+          },
+          "SaveUserInGroups": {
+            "SaveUserInGroups_ModelValidationFail": "Bilgiler düzgün bir şekilde iletilemedi!",
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!"
+          },
+          "SaveUserInRoles": {
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!",
+            "SaveUserInRoles_ModelValidationFail": "Bilgiler düzgün bir şekilde iletilemedi!"
+          }
+        },
+        "Group": {
+          "Save": {
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!",
+            "Save_ModelValidationFail": "Bilgiler doğru bir şekilde iletilemedi!",
+            "Save_DataNotFound": "Kayıt bulunamadı!",
+            "Save_GroupNameExists": "Grup adı kullanılıyor!"
+          },
+          "SaveGroupInRoles": {
+            "TechnicalError": "Teknik bir sorundan dolayı işlem gerçekleştirilemedi!",
+            "SaveGroupInRoles_ModelValidationFail": "Bilgiler doğru bir şekilde iletilemedi!"
+          }
+        }
+      }
+    }
+  },
+  "data": {
+    "currentUserMenu": {
+      "myProfile": "Profil Bilgileriniz",
+      "myNotifications": "Bildirimleriniz",
+      "myMessages": "Mesajlarınız",
+      "logout": "Güvenli Çıkış"
+    }
+  },
+  "storages": {
+    "user": {
+      "g_storages_user_getUser": {
+        "notFoundText": "[bilinmiyor]"
+      },
+      "g_storages_user_fullName": {
+        "notFoundText": "[bilinmiyor]"
+      },
+      "socketSync": {
+        "add": {
+          "title": "Yeni bir kullanıcı eklendi: '{name}'",
+          "desc": "{user} tarafından sisteme yeni bir kullanıcı eklendi: '{name}'"
+        },
+        "update": {
+          "title": "Kullanıcı güncellendi: '{name}'",
+          "desc": "'{user}' isimli kullanıcı tarafından '{name}' isimli kullanıcı güncellendi."
+        },
+        "remove": {
+          "title": "Kullanıcı silindi: '{name}'",
+          "desc": "'{user}' isimli kullanıcı tarafından '{name}' isimli kullanıcı silindi."
+        },
+        "changeRoles": {
+          "title": "Kullanıcının yetkileri güncellendi: '{name}'",
+          "desc": "'{user}' isimli kullanıcı tarafından '{name}' isimli kullanıcının yetkileri güncellendi."
+        }
+      }
+    },
+    "userGroups": {
+      "socketSync": {
+        "add": {
+          "title": "Yeni bir kullanıcı grubu eklendi: '{name}'",
+          "desc": "{user} tarafından sisteme yeni bir kullanıcı grubu eklendi: '{name}'"
+        },
+        "update": {
+          "title": "Kullanıcı grubu güncellendi: '{name}'",
+          "desc": "'{user}' isimli kullanıcı tarafından '{name}' isimli kullanıcı grubu güncellendi."
+        },
+        "remove": {
+          "title": "Kullanıcı grubu silindi: '{name}'",
+          "desc": "'{user}' isimli kullanıcı tarafından '{name}' isimli kullanıcı grubu silindi."
+        },
+        "changeRoles": {
+          "title": "Kullanıcı grubunun yetkileri güncellendi: '{name}'",
+          "desc": "'{user}' isimli kullanıcı tarafından '{name}' isimli kullanıcı grubunun yetkileri güncellendi."
+        }
+      }
+    }
+  },
+  "views": {
+    "login": {
+      "screenTitle": "Kayıtlı Kullanıcı Girişi",
+      "template": {
+        "title": "Kullanıcı Girişi",
+        "emailLabel": "E-Posta Adresiniz",
+        "passLabel": "Şifreniz",
+        "enterBtn": "GİRİŞ YAP"
+      },
+      "script": {
+        "emailValidation": {
+          "emailEmpty": "E-Posta adresi boş bırakılmamalı!",
+          "emailTooLong": "E-Posta adresi çok uzun (en fazla 256 karakter)",
+          "emailWrongFormat": "E-Posta adresi geçersiz!"
+        },
+        "passValidation": {
+          "passEmpty": "Şifre boş bırakılamaz!",
+          "passTooShort": "Şifre çok kısa! (en az 8 karakter)",
+          "passTooLong": "Şifre çok uzun! (en fazla 32 karakter)",
+          "passWrongFormat": "Geçersiz şifre formatı! (en az 1 küçük harf, 1 büyük harf, 1 rakam ve 1 yabancı karakter)"
+        },
+        "formSubmit": {
+          "unValid": "Lütfen önce formdaki hataları giderin.",
+          "loading": "İşlem gerçekleştiriliyor, lütfen bekleyin..."
+        }
+      }
+    },
+    "notifications": {
+      "template": {
+        "screenTitle": "Bildirimleriniz",
+        "removeTooltip": "Bu bildirimi sil"
+      }
+    },
+    "socketUsers": {
+      "screenTitle": "Sistemdeki Kullanıcılar",
+      "template": {
+        "searchLabel": "Kullanıcılarda Ara",
+        "selectUserInfo": "Soldaki listeden bir kullanıcı seçin.",
+        "statusTrue": "Aktif",
+        "statusFalse": "Pasif",
+        "tabTitle": "KULLANICI BİLGİLERİ"
+      },
+      "script": {
+        "computed": {
+          "items": {
+            "root1": "Sisteme Bağlı Olan Kullanıcılar",
+            "root2": "Bağlı Olmayan Kullanıcılar"
+          }
+        },
+        "methods": {
+          "getUser_fullName": {
+            "unknownUser": "[bilinmiyor]"
+          }
+        }
+      }
+    },
+    "messages": {
+      "screenTitle": "Mesajlar",
+      "template": {
+        "userListHeader": "Sistemdeki Kişiler"
+      }
+    },
+    "CurrentUser": {
+      "Profile": {
+        "screenTitle": "Profiliniz",
+        "tabs": {
+          "profileInformations": "PROFİL BİLGİLERİ",
+          "images": "RESİMLER",
+          "changePass": "ŞİFRE DEĞİŞİKLİĞİ"
+        }
+      }
+    },
+    "hub": {
+      "template": {
+        "screenTitle": "Socket ve Veri Depoları Ayarları",
+        "settingsLabels": {
+          "loadStartup": "Başlangıçta doldur",
+          "coverData": "Yüklenen verileri koru, boşaltılmasını engelle ve socket ile sürekli güncel tut"
+        },
+        "msgOfOwnerSystem": "Bu deponun sahibi sistem olduğu için ayarları değiştiremiyorsunuz.",
+        "alertContent": "Lütfen aşağıdaki ayarları değiştirmeden önce, ekranın en alt kısmında bulunan açıklamaları okuyun. Çünkü burada yapacağınız değişiklikler, sistemin tıkanmasına, yavaş çalışmasına ve hatta hiç çalışamamasına neden olabilir. Bu nedenle bu ayarları sadece uzman kişiler değiştirmelidir.",
+        "statistics": {
+          "calcTotal": "Toplam Hafıza Kullanımı",
+          "system": "Sistem",
+          "storages": "Depolar"
+        },
+        "documentation": {
+          "q1": {
+            "q": "Veri Depoları Nedir?",
+            "a1": "Veri depoları ekranlarda gösterilen, işlemlerde kullanılan ve benzeri tüm verileri tutan hafızalardır. Bu uygulama içerisinde yine bu proje için çalışmakta olan API ile iletişim söz konusudur. Bu iletişim sayesinde tüm işlemler yapılabildiği gibi, socket bağlantı sayesinden iki yönlü anlık haberleşme yapılabilmektedir (canlı mesaj sistemi buna örnek)"
+          },
+          "q2": {
+            "q": "Neden Veri Depoları Kullanılıyor?",
+            "a1": "Veri depoları API uygulamasından çekilen verileri tutmak için kullanılmaktadır. Normal şartlarda herhangi bir ekrana girdiğinizde, size ekran gösterilmeden önce ihtiyaç duyulan tüm veriler yükleme aşamasında API uygulamasından çekilir ve gereken yere koyulur. Yine normal şartlarda ekrandan çıktığınızda da bu belleğe alınan veriler silinir. Aksi taktirde, belli bir süre her ekran açışınızda belleğe yeni veriler koyulup silinmediğinden, sekme hata verecektir.",
+            "a2": "Herhangi bir ekranı açtığınızda, API üzerinden birçok veri çekilir. Fakat bu çekilen veriler her seferinde aynı olabilir (yada bazıları aynı çekilen veriler olabilir). Böyle bir durumda, her ekrana girdiğinizde (çıkışınızda temizlik yapılsa bile), sürekli API'den veri çekilir. Bir önceki ekranda çektiğiniz bir veri bir sonraki ekranda da kullanılacaksa, bu çekilen veri korunmalıdır. Böylece bir sonraki ekrana girdiğinizde tekrar çekmek gerekmez. İşte bu depolar bu nedenle hazırlanmıştır."
+          },
+          "q3": {
+            "q": "Hangi Veriler Depolarda Muhafaza Edilir?",
+            "a1": "Birden fazla ekranda kullanılan veriler, depolarda saklanır. Çünkü bu uygulama sekmeyi kapatmadıkça veya sayfayı yenilemedikçe sizin tarayıcınızda çalışır. Yani, bu uygulama sizin makinanızın kaynaklarını kullanmaktadır. Bu nedenle çekilen bir veri, birden fazla ekranda yada işlemde kullanılacaksa, bir depoda muhafaza edilir. İhtiyaç duyulduğunda da bu depodan alınarak kullanılır."
+          },
+          "q4": {
+            "q": "Depolardaki Veriler Güncel Tutuluyor Mu?",
+            "a1": "Evet tutuluyor. Uygulama içerisinde gömülü olarak çalışan Socket yapısı sayesinde, geliştirici tarafından önceden belirlenmiş olan bu depolardaki verilerle ilgili tüm işlemler, soket tarafından uygulamaya aktarılır. Yani, bir veri çekilip depoya koyulduktan sonra siz veya başka biri bu verilerde bir değişiklik yaparsa (ekleme, güncelleme veya silme gibi), bu işlemler anında sizin uygulamanıza da iletilir. Örneğin, uygulamanız bir veri topluluğunu çekip depoya koyduktan sonra bir başkası bu kümeye yeni bir veri eklerse, bu eklenen yeni veri Socket tarafından anında sizin uygulamanıza da gönderilir. Uygulamanız gelen bu yeni verinin \"yeni\" olduğunu anlar ve ilgili depoya ekler. Böylece veri lisesini bir kere toplu çektikten sonra bir daha çekmenize gerek kalmadığı gibi, anlık iletişim ile güncel kalması sağlanmış olur."
+          },
+          "q5": {
+            "q": "Neden Bazı Ayarlar Değiştirilemiyor?",
+            "a1": "Çünkü bu ayarları sistem kullanıyor ve alt yapıdaki iş kuralları gereği bu ayarlar geliştirici tarafından nasıl ön görülmüşse, o şekilde ayarlanmış olarak çalışıyor. Bu değiştirilemeyen depo isimlerinin altında kırmızı yazıyla sisteme ait olduğu belirtilmektedir."
+          },
+          "q6": {
+            "q": "\"Başlangçta Doldur\" Ne Anlama Geliyor?",
+            "a1": "Bu özellik aktif edildiğinde, ilgili depo uygulamanın ilk yüklenmesinde doldurulur. Bu sayede siz ekranları gezerken ve işlemler yaparken, bu depolardaki veriler için (ve bunları çekmek için) ayrıca zaman harcanmaz. Bu özelliğin hem artıları hem de eksileri bulunmaktadır. Artısı; deponun uygulama başlangıcında yüklendikten sonra bir daha yüklenmesinin gerekmemesidir. Eksisi ise, gerçekten bunun gerekli olmadığı depolarda bu özelliği açmak ve bu ön yüklemeli depo sayısının artması, ön yüklemenin daha çok büyümesine ve yükleme süresinin artmasına neden olacaktır. Hatta bu yük belli bir noktaya geldiğinde, uygulamanın hiç yüklenememesine de yol açabilir. Bu nedenle iyi analiz edilmeli ve ön yüklemeye dahil edilecek bu yük, ciddi manada bir kazanım sağlıyorsa göze alınmalıdır.",
+            "a2": "Örneğin kullanıcı deposu için bu özelliği açmak mantıklıdır. Çünkü birçok ekranda ve özellikle socket bağlantısında anlık olarak sık kullanılan bir veri türüdür. Bu nedenle bu deponun bu özelliği açık olmalıdır. Aynı şekilde yetki tanımları deposu da çok sık kullanıldığından, bu özelliği açık olmalıdır. Fakat sadece ilgili ekrana girildiğinde görünecek olan veri depoları için bu özellik muhakkak kapatılmalıdır."
+          },
+          "q7": {
+            "q": "\"Yüklenen verileri koru, boşaltılmasını engelle ve socket ile sürekli güncel tut\" Ne Anlama Geliyor?",
+            "a1": "Doldurulan bir deponun boşaltılmamasını sağlıyor. Belki bu noktada \"başlangıçta doldurmayla bu özelliğin bir alakası var mı?\" gibi bir düşünce oluşabilir fakat aralarında herhangi bir bağlantı yok. Şöyle ki; Başlangıçta yükleme özelliği, sadece bir deponun sistem başlangıcında yüklenmesini sağlar. Fakat bu özellik, bir depo ne zaman yüklenmiş olursa olsun, boşaltılmamasını sağlar. Yani; bir depo için siz bu özelliği kapatıp, başlangıçta yükleme özelliğini açarsanız, muhtemelen ilgili depo yüklenecek ve sonra boşaltılacaktır (eğer ilişkili ekranlarda değilseniz). Yani gereksiz yere yüklenmiş olacaktır. Çünkü hemen boşaltılmıştır. Bu nedenle bir depo için başlangıçta yükleme özelliği açılmışsa, bu özelliğin de açılması gerekir. Fakat bu zorunlu bir şart değildir. Çünkü farklı kullanımlar söz konusu olabilir. Örnek olarak; sistem ilk yüklendiğinde sizi zorunlu olarak ana ekrana getirir. Eğer bir depo seyrek kullanılacak bir depo olmasına rağmen ana ekranda kullanılacaksa, başlangıçta yükleme özelliği açılmasına rağmen bu özelliği kapatılabilir. Hatta bu çok yerinde bir ayarlama olur. Çünkü ana ekrandan çıktığınızda ve bu depoyla ilişkisi olmayan bir ekrana geçtiğinizde depo boşaltılacaktır. Böylece hafıza daha verimli bir şekilde kullanılmış olacaktır."
+          },
+          "q8": {
+            "q": "\"Depoyla İlişkili Ekran\" Ne Demek?",
+            "a1": "Her depo isminin altında liste olarak ilişkili olduğu ekranların adresleri görünmektedir (eğer ilişkili olduğu ekran varsa). Bu şu anlama gelir; (başlangıçta yükleme özelliği açık yada kapalı olması önemli değil) Deponun koruma özelliği açıksa ve ilişkili olduğu bir ekrandaysanız depo korunur, bpşaltılmaz. Fakat bu deponun ilişkili olmadığı bir ekrana girerseniz ve depo doluysa, boşaltılır. Fakat bir depo için herhangi bir ekran ilişkisi kurulmamışsa, ihtiyaç duyulduğunda yüklenir. Herhangi bir ekranla ilişkisi olmayan bir deponun koruma özelliği kapalıysa, ihtiyaç duyulduğunda yüklendiği ekrandan çıktıldığında boşaltılır."
+          },
+          "q9": {
+            "q": "Depolarla Ekran İlişkilerini Kim Ayarlıyor ve Neden Müdehale Edemiyorum?",
+            "a1": "Bu ayarlar geliştirici tarafından ayarlanmaktadır. Çünkü yazılımsal bir konudur. Bu nedenle siz bu konuya müdahale edemezsiniz. Sizin bu kısımda yapabileceğiniz şeyler sadece uygulamanızın kullanacağı kaynağa müdahale etmekle sınırlıdır. Çünkü bu konu esneklik sağlayan bir konudur."
+          },
+          "q10": {
+            "q": "Kaynak Kullanımını Optimize Ederken Nasıl Bir Yaklaşım Benimsenmeli?",
+            "a1": "Eğer bilgisayarınızın RAM kapasitesi yüksekse ve bu uygulama çalışırken bu belleğin çoğu boştaysa (diğer uygulamalar yoğun kaynak kullanmıyorsa), mümkün mertebe depoların koruma özelliği açılmalıdır. Böylece depolar bir kere doldurulacak ve Socket bağlantısı sayesinde güncel olacaklardır. Fakat bu özelliği açtığınız her deponun, sahip olduğu veri yoğunluğuna göre hafızayı doldurucağını unutmamak ve analiz yaparak bunu organize etmek gerekir. Yani, RAM kapasiteniz ne kadar yüksek olursa olsun, eğer keyfi olarak tüm depoların koruma özelliğini açarsanız ve veri tabanınızdaki veri yoğunluğu yüksekse, belli bir zaman sonra uygulamanızın \"patlaması\" ve sekmenin yanıt vermez duruma gelmesi çok muhtemeldir.",
+            "a2": "Eğer RAM kapasiteniz düşükse yada bu uygulamayı kullanırken başka büyük uygulamaları da kullandığınız için kaynak kısıtlıysa, mümkün mertebe az sayıda deponun koruma özelliği açılmalıdır. Böyle olduğunda size ekranlarınızın açılmasında ve işlemlerin yapılmasında çok az bir zaman kaybı yaşatacaktır (kimi işlemlerde belki fark edilmeyecek kadar az, kimi işlemlerde de oldukça farkedilecek kadar çok). Fakat her deponun verisine ihtiyaç duyulduğunda API'den çekilecektir. Yani, ya hafıza kaynağını kullanarak işlem süresinden kazanıp, internet kullanımından ve sunucu yükünden kısacaksınız, yada işlem süresindeki kazanımı feda ederek internet kullanımını ve sunucu yükünü arttıracaksınız. Bu tercihi bilgisayarınıza ve tüm kaynaklarınıza göre (sunucu, internet, vd.) iyi analiz ederek yapmalısınız."
+          }
+        },
+        "saveBtnText": "DEĞİŞİKLİKLERİ KAYDET"
+      }
+    },
+    "userManagement": {
+      "users": {
+        "template": {
+          "screenTitle": "Kullanıcılar",
+          "addNewBtnText": "YENİ KULLANICI EKLE",
+          "datatable": {
+            "editLabel": "Kullanıcı Bilgilerini Güncelle",
+            "removeLabel": "Kullanıcıyı Sil",
+            "manageUserInGroup": "Kullanıcının Dahil Olduğu Gruplar",
+            "manageUserInRoles": "Kullanıcının Yetkileri"
+          }
+        },
+        "script": {
+          "data": {
+            "datatable": {
+              "headers": {
+                "name": "Adı",
+                "surname": "Soyadı",
+                "profileStatusMessage": "Durum Mesajı",
+                "userName": "Kullanıcı Adı",
+                "email": "E-Posta",
+                "addingDate": "Eklenme Tarihi",
+                "addingUserId": "Ekleyen",
+                "updatingDate": "Son Güncelleme",
+                "updatingUserId": "Güncelleyen",
+                "actions": "İşlemler"
+              },
+              "searchPlaceholder": "Kullanıcılarda Arayın"
+            }
+          },
+          "methods": {
+            "deleteItem": {
+              "confirm": {
+                "title": "İşlem Onayı",
+                "msg": "Kullanıcı silmek istediğinize emin misiniz?",
+                "info": "Sistem içerisinde hiçbir kayıt fiziki olarak silinmediğinde, diğerlerinde olduğu gibi bu kullanıcı kaydı da silinmeyecek fakat pasif duruma getirilecektir. Böylece herhangi bir yerde görünmeyecektir."
+              },
+              "loadingMsg": "İşlem gerçekleştiriliyor...",
+              "success": {
+                "title": "Başarılı İşlem",
+                "msg": "Kullanıcı başarılı bir şekilde silindi (pasif duruma getirildi)"
+              },
+              "errorTitle": "İşlem Başarısız!"
+            }
+          }
+        }
+      },
+      "groups": {
+        "template": {
+          "screenTitle": "Kullanıcı Grupları",
+          "addNewBtnText": "YENİ KULLANICI GRUBU EKLE",
+          "searchPlaceholder": "Kullanıcı Gruplarında Arayın",
+          "editLabel": "Grup Bilgilerini Değiştir",
+          "changeRolesLabel": "Grup Yetkilerini Değiştir",
+          "removeLabel": "Grubu Sil",
+          "detailSlot": {
+            "tabs": {
+              "details": "DETAYLAR",
+              "roles": "YETKİLERİ",
+              "users": "KULLANICILARI"
+            }
+          }
+        },
+        "script": {
+          "data": {
+            "datatable": {
+              "headers": {
+                "name": "Kullanıcı Grubunun Adı",
+                "actions": "İşlemler"
+              }
+            }
+          },
+          "methods": {
+            "deleteItem": {
+              "confirm": {
+                "title": "İşlem Onayı",
+                "msg": "Kullanıcı grubunu silmek istediğinize emin misiniz?",
+                "info": "Kayıt fiziki olarak silinmeyecek, pasif duruma getirilecektir."
+              },
+              "loadingMsg": "İşlem gerçekleştiriliyor...",
+              "success": {
+                "title": "Başarılı",
+                "msg": "Kullanıcı grubu başarılı bir şekilde pasif duruma getirildi."
+              },
+              "errorTitle": "İşlem Başarısız!"
+            }
+          }
+        }
+      },
+      "roles": {
+        "template": {
+          "title": "Yetki Tanımları",
+          "desc": "Aşağıdaki listede, sistemde bulunan tüm yetki tanımları yer almaktadır. Bu tanımlarla ilgili herhangi bir işlem yapamazsınız. Aşağıdaki liste ile sadece yetki tanımlarıyla ilgili bilgi verilmek istenmiştir. Bu yetkiler sistem yapımcıları tarafından sisteme eklenmektedir ve ihtiyaca göre kullanılmaktadır."
+        }
+      }
+    },
+    "roles": {
+      "template": {
+        "searchPlaceholder": "Yetki tanımlarında ara"
+      }
+    }
+  },
+  "components": {
+    "app": {
+      "VSnackbarQueue": {
+        "nextAlertView": "SONRAKİ ({count})"
+      },
+      "chat": {
+        "template": {
+          "messageBoxPlaceholder": "Mesajınız"
+        }
+      }
+    },
+    "content": {
+      "profile": {
+        "profileInformations": {
+          "template": {
+            "formInputLabels": {
+              "name": "Adınız",
+              "surname": "Soyadınız",
+              "statusMessage": "Profil Durum Mesajınız"
+            },
+            "resetTooltip": "Değişiklikleri Geri Al",
+            "saveBtnText": "DEĞİŞİKLİKLERİ KAYDET"
+          },
+          "script": {
+            "validations": {
+              "NameValidation": {
+                "empty": "İsim boş bırakılamaz!",
+                "maxLength": "İsim en fazla 256 karakter uzunluğunda olmalıdır!"
+              },
+              "SurnameValidation": {
+                "empty": "Soyisim boş bırakılamaz!",
+                "maxLength": "Soyisim en fazla 256 karakter uzunluğunda olmalıdır!"
+              },
+              "ProfileStatusMessageValidation": {
+                "maxLength": "Profil durum mesajı en fazla 512 karakter uzunluğunda olmalıdır!"
+              }
+            },
+            "methods": {
+              "formSubmit": {
+                "validationErrorMsg": "Formda hatalar var!",
+                "loadingMsg": "Bilgileriniz kaydediliyor...",
+                "successTitle": "Kaydedildi",
+                "successMsg": "Bilgileriniz başarılı bir şekilde güncellendi."
+              }
+            }
+          }
+        },
+        "profileImages": {
+          "template": {
+            "profilePicChangeBtn": "PROFİL RESMİNİ DEĞİŞTİR",
+            "profilePicSaveBtn": "DEĞİŞİKLİĞİ KAYDET",
+            "profileBgPicChangeBtn": "PROFİL ARKA EKRAN RESMİNİ DEĞİŞTİR",
+            "profileBgPicSaveBtn": "DEĞİŞİKLİĞİ KAYDET"
+          },
+          "script": {
+            "methods": {
+              "saveNewProfilePic": {
+                "loading": "İşlem gerçekleştiriliyor...",
+                "successTitle": "Güncellendi",
+                "successMsg": "Yeni profil resminiz kaydedildi ve uygulandı.",
+                "errorTitle": "Hata!"
+              },
+              "saveNewProfileBgPic": {
+                "loading": "İşlem gerçekleştiriliyor...",
+                "successTitle": "Kaydedildi",
+                "successMsg": "Profil arka ekran görseli kaydedildi ve uygulandı.",
+                "errorTitle": "Hata!"
+              }
+            }
+          }
+        },
+        "passwordChange": {
+          "template": {
+            "currentPassLabel": "Mevcut Şifreniz",
+            "currentPassHint": "Şifre en az 8 an fazla 32 karakter uzunluğunda olmalıdır.",
+            "newPassLabel": "Yeni Şifreniz",
+            "newPassHint": "Şifre en az 8 an fazla 32 karakter uzunluğunda olmalıdır.",
+            "newPass2Label": "Yeni Şifrenizin Tekrarı",
+            "newPass2Hint": "Şifre en az 8 an fazla 32 karakter uzunluğunda olmalıdır.",
+            "resetFormButtonText": "Değişiklikleri Geri Al",
+            "updatePasswordBtnText": "ŞİFREYİ GÜNCELLE"
+          },
+          "script": {
+            "validations": {
+              "CurrentPassValidation": {
+                "empty": "Şifre boş bırakılamaz!",
+                "wrongType": "Şifre formatı hatalı! En az 1 büyük harf, rakam ve nokta gibi yabancı karakter olmalıdır!",
+                "minLength": "Şifre en az 8 karakter uzunluğunda olmalıdır!",
+                "maxLength": "Şifre en fazla 32 karakter uzunluğunda olmalıdır!"
+              },
+              "NewPassValidation": {
+                "empty": "Şifre boş bırakılamaz!",
+                "wrongType": "Şifre formatı hatalı! En az 1 büyük harf, rakam ve nokta gibi yabancı karakter olmalıdır!",
+                "minLength": "Şifre en az 8 karakter uzunluğunda olmalıdır!",
+                "maxLength": "Şifre en fazla 32 karakter uzunluğunda olmalıdır!"
+              },
+              "NewPassAgainValidation": {
+                "empty": "Şifre boş bırakılamaz!",
+                "wrongType": "Şifre formatı hatalı! En az 1 büyük harf, rakam ve nokta gibi yabancı karakter olmalıdır!",
+                "minLength": "Şifre en az 8 karakter uzunluğunda olmalıdır!",
+                "maxLength": "Şifre en fazla 32 karakter uzunluğunda olmalıdır!",
+                "equal": "Yeni şifre tekrarı yeni şifre ile aynı değil!"
+              }
+            },
+            "methods": {
+              "formSubmit": {
+                "unValid": "Lütfen önce formdaki hataları giderin.",
+                "loading": "Güncelleniyor...",
+                "successTitle": "Güncellendi",
+                "successMsg": "Şifre başarılı bir şekilde güncellendi.",
+                "errorTitle": "Hata!"
+              }
+            }
+          }
+        }
+      },
+      "user": {
+        "userForm": {
+          "script": {
+            "data": {
+              "validations": {
+                "nameValidation": {
+                  "requiredError": "Bu bilgi zorunlu!",
+                  "maxLengthError": "En fazla 256 karakter olmalı!"
+                },
+                "surnameValidation": {
+                  "requiredError": "Bu bilgi zorunlu!",
+                  "maxLengthError": "En fazla 256 karakter olmalı!"
+                },
+                "userNameValidation": {
+                  "requiredError": "Bu bilgi zorunlu!",
+                  "maxLengthError": "En fazla 32 karakter olmalı!"
+                },
+                "emailValidation": {
+                  "requiredError": "Bu bilgi zorunlu!",
+                  "formatError": "Geçersiz adres!"
+                },
+                "passValidation": {
+                  "requiredError": "Bu bilgi zorunlu!",
+                  "minLengthErr": "En az 8 karakter olmalı!",
+                  "maxLengthError": "En fazla 32 karakter olmalı!",
+                  "formatError": "Geçersiz format! En az 1 küçük ve 1 büyük karakter, en az 1 harf ve en az 1 diğer karakter olmalı."
+                },
+                "passAgainValidation": {
+                  "notEqual": "Şifre tekrarı hatalı!"
+                }
+              }
+            },
+            "computed": {
+              "headline": {
+                "newFormTitle": "Yeni Kullanıcı Ekleme Formu",
+                "editFormTitle": "Kullanıcı Bilgileri Güncelleme Formu"
+              }
+            },
+            "methods": {
+              "save": {
+                "loading": "Kaydediliyor...",
+                "success": {
+                  "title": "Başarılı",
+                  "msg": "Kullanıcı başarılı bir şekilde eklendi.",
+                  "msgUpdate": "Kullanıcı başarılı bir şekilde güncellendi. Güncelleme işlemi nedeniyle ilgili kullanıcının tüm oturumları güvenlik nedeniyle otomatik olarak kapatıldı."
+                },
+                "error": {
+                  "title": "Başarısız"
+                },
+                "passwordErrors": {
+                  "newPassEmpty": "Şifre belirtilmemiş!",
+                  "newPassEmpty2": "Yeni şifre belirtilmemiş!",
+                  "newPassAgainEmpty": "Şifre tekrarı belirtilmemiş!",
+                  "newPassAgainEmpty2": "Yeni şifre tekrarı belirtilmemiş!",
+                  "newPassAgainWrong": "Şifre tekrarı yanlış!",
+                  "newPassAgainWrong2": "Yeni şifre tekrarı yanlış!",
+                  "currentPassEmpty": "Mevcut şifre belirtilmemiş!"
+                }
+              },
+              "deleteItem": {
+                "confirm": {
+                  "title": "İşlem Onayı",
+                  "msg": "Bu kullanıcıyı silmek istediğinize emin misiniz?",
+                  "info": "Kullanıcı fiziki anlamda silinmez, pasif duruma getirilir. Böylece herhangi bir yerde işlem yapılırken seçilemez, giriş yapamaz veya herhangi bir işlem yapamaz."
+                },
+                "loadingMsg": "İşlem gerçekleştiriliyor...",
+                "success": {
+                  "title": "İşlem Başarılı",
+                  "msg": "İşlem başarılı bir şekilde gerçekleşti ve kullanıcı silindi (pasif duruma getirildi)"
+                },
+                "errorTitle": "İşlem Başarısız!"
+              },
+              "close": {
+                "success": {
+                  "title": "Durum Bilgisi",
+                  "msg": "Güncellenen kullanıcı bilgileri sizin bilgileriniz olduğundan, güvenlik nedeniyle oturumunuz kapatılacaktır. Lütfen yeniden giriş yapın."
+                }
+              }
+            }
+          },
+          "template": {
+            "form": {
+              "labels": {
+                "name": "Adı",
+                "surname": "Soyadı",
+                "userName": "Kullanıcı Adı",
+                "email": "E-Posta",
+                "currentPass": "Mevcut Şifre",
+                "newPass": "Yeni Şifre",
+                "newPassAgain": "Yeni Şifre Tekrarı"
+              },
+              "passHint": "şifre en az 8, en fazla 32 karakter olmalıdır.",
+              "cancelBtnText": "VAZGEÇ",
+              "saveBtnText": "KAYDET"
+            }
+          }
+        },
+        "userDetails": {
+          "template": {
+            "added": "Eklenme:",
+            "updated": "Son Güncelleme:",
+            "status": "Durum:",
+            "sendMessageBtnText": "MESAJ GÖNDER"
+          }
+        },
+        "userInRolesManage": {
+          "template": {
+            "checkGroup": " (gruptan)",
+            "checkGroupFalse": ""
+          },
+          "script": {
+            "methods": {
+              "save": {
+                "loading": "Kaydediliyor..."
+              }
+            }
+          }
+        }
+      },
+      "userInGroupsManage": {
+        "template": {
+          "cardTitle": "Kullanıcının Dahil Olduğu Grupları Yönet",
+          "cancelBtnText": "VAZGEÇ",
+          "saveBtnText": "KAYDET",
+          "user": "Kullanıcı"
+        },
+        "script": {
+          "methods": {
+            "save": {
+              "loading": "Kaydediliyor...",
+              "zeroSelectedConfirm": {
+                "title": "İşlem Onayı",
+                "msg": "Herhangi bir grup seçmemişsiniz. Eğer devam ederseniz, kullanıcının önceden dahil olduğu gruplar varsa bu gruplardan çıkarılacaktır. Eğer devam etmezseniz, herhangi bir işlem yapılmayacaktır. Devam etmek istiyor musunuz?",
+                "info": ""
+              },
+              "processConfirm": {
+                "title": "İşlem Onayı",
+                "msg": "Yaptığınız değişikliklerin kaydedilmesini istiyor musunuz?",
+                "info": "Bu işlem sonrasında kullanıcının yetkilerinde de değişiklik olabilir. Bu nedenle kullanıcının tüm oturumları otomatik olarak kapatılacaktır."
+              },
+              "success": {
+                "title": "Başarılı",
+                "msg": "Değişiklikler başarılı bir şekilde kaydedildi. Bu değişiklikler yetki kısmında da değişikliğe neden olabileceğinden, güvenlik nedeniyle kullanıcının tüm oturumları kapatıldı."
+              },
+              "errorTitle": "Başarısız"
+            }
+          }
+        }
+      },
+      "userInRolesManage": {
+        "template": {
+          "cardTitle": "Kullanıcının Yetkilerini Yönet",
+          "user": "Kullanıcı",
+          "cancelBtnText": "VAZGEÇ",
+          "saveBtnText": "KAYDET"
+        },
+        "script": {
+          "methods": {
+            "save": {
+              "confirm": {
+                "title": "İşlem Onayı",
+                "msg": "Değişiklikleri kaydetmek istediğinize emin misiniz?",
+                "info": "Bu değişiklikler sonrasında kullanıcının tüm oturumları güvenlik nedeniyle kapatılacak."
+              },
+              "zeroItemsConfirm": {
+                "title": "İşlem Onayı",
+                "msg": "Herhangi bir yetki tanımı seçilmemiş. Devam ettiğiniz taktirde daha önceden verilmiş tüm yetkiler geri alınacaktır. Devam etmek istiyor musunuz?",
+                "info": "Devam etmeniz durumunda sadece kullanıcıya özel verilen yetkiler geri alınacaktır. Fakat kullanıcının dahil olduğu gruplardan devir aldığı tüm yetkiler kalacaktır."
+              }
+            },
+            "saveContinue": {
+              "success": {
+                "title": "Başarılı",
+                "msg": "Değişiklikler başarılı bir şekilde kaydedildi ve uygulandı. Kullanıcının tüm oturumları güvenlik nedeniyle kapatıldı."
+              },
+              "errorTitle": "Başarısız!"
+            }
+          }
+        }
+      },
+      "groupForm": {
+        "script": {
+          "data": {
+            "headline": {
+              "add": "Yeni Kullanıcı Grubu Ekle",
+              "edit": "Kullanıcı Grubu Düzenle"
+            },
+            "validations": {
+              "nameValidation": {
+                "requiredError": "Bu bilgi zorunlu!",
+                "maxLengthError": "En fazla 256 karakter olmalı!"
+              }
+            }
+          },
+          "methods": {
+            "save": {
+              "validationError": "Formda Hatalar Var!",
+              "loading": "Kaydediliyor...",
+              "successTitle": "Kaydedildi",
+              "successMsg": "Bilgiler başarılı bir şekilde kaydedildi.",
+              "errorTitle": "Başarısız!"
+            }
+          }
+        },
+        "template": {
+          "labels": {
+            "name": "Kullanıcı Grubunun Adı"
+          },
+          "btn": {
+            "cancelBtnText": "VAZGEÇ",
+            "saveBtnText": "KAYDET"
+          }
+        }
+      },
+      "groupRoles": {
+        "template": {
+          "cardTitle": "Kullanıcı Grubunun Yetkileri",
+          "cancelBtnText": "VAZGEÇ",
+          "saveBtnText": "KAYDET"
+        },
+        "script": {
+          "save": {
+            "loading": "Kaydediliyor...",
+            "confirm": {
+              "title": "İşlem Onayı",
+              "msg": "İşleme devam ederek kullanıcı grubunun yetkilerini değiştirmek istiyor musunuz?",
+              "info": "Yapacağınız bu değişikliklerden sonra, bu gruba dahil olan tüm kullanıcıların yetkileri de değişecek ve tüm oturumları otomatik olarak kapatılacak."
+            },
+            "confirmZeroSelected": {
+              "title": "İşlem Onayı",
+              "msg": "Herhangi bir yetki seçilmemiş. Bu durumda grubun tüm yetkileri alınacak. Aynı zamanda gruba dahil olan kullanıcılardan da bu yetkiler alınacak (diğer gruplardan benzer yetkileri alıyorlarsa, bu yetkilere sahip olmaya devam edecekler). Devam etmek istiyor musunuz?",
+              "info": "Şuan yetki boşaltma işlemi yapıyor olacaksınız. Gruba dahil olan kullanıcılardan da daha önce bu grup sayesinde aldıkları yetkiler de geri alınacak. Fakat diğer gruplardan da şuan alınacak olan yetkileri almış olabilirler. Böyle bir durumda kullanıcılar hala yetki sahibi olacaklar."
+            }
+          },
+          "saveContinue": {
+            "success": {
+              "title": "İşlem Başarılı",
+              "msg": "Güncelleme başarılı bir şekilde gerçekleştirildi."
+            }
+          }
+        }
+      }
+    },
+    "layout": {
+      "socketUpdater": {
+        "template": {
+          "statusText": "Socket verileri güncelliyor..."
+        }
+      }
+    }
+  },
+  "menu": {
+    "home": "Dashboard",
+    "currentUser": {
+      "currentUser": "Size Özel",
+      "profile": "Profil Bilgileriniz",
+      "notification": "Bildirimleriniz",
+      "messages": "Mesajlarınız",
+      "logout": "Güvenli Çıkış"
+    },
+    "userManagement": {
+      "userManagement": "Kullanıcı Yönetimi",
+      "users": "Kullanıcılar",
+      "userGroups": "Kullanıcı Grupları",
+      "roles": "Yetki Tanımları"
+    }
+  },
+  "rolesDefinitions": {
+    "Root": {
+      "title": "En Üst Düzey Yetki",
+      "desc": "Bu yetkiye sahip olan kullanıcı, tüm işlemleri yapabilir."
+    },
+    "Root_UserManagement": {
+      "title": "Kullanıcı Denetimi İçin Üst Düzey Yetki",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcı denetimiyle ilgili tüm işlemleri yapabilir."
+    },
+    "Root_UserManagement_User": {
+      "title": "Kullanıcı Yönetimi İçin Üst Düzey Yetki",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcılarla ilgili tüm işlemleri yapabilir."
+    },
+    "Root_UserManagement_User_List": {
+      "title": "Kullanıcı Listesine Erişim Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcı listesine erişebilir."
+    },
+    "Root_UserManagement_User_Add": {
+      "title": "Kullanıcı Ekleme Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, yeni kullanıcı ekleyebilir. Fakat kullanıcı listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_User_Update": {
+      "title": "Kullanıcı Güncelleme Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcı bilgilerini güncelleyebilir. Fakat kullanıcı listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_User_ChangeStatus": {
+      "title": "Kullanıcıyı Silme Yetkisi (pasif duruma getirme yetkisi)",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcıyı silebilir (pasif duruma getirebilir). Fakat kullanıcı listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_User_ChangeRoles": {
+      "title": "Kullanıcının Yetkilerini Düzenleme Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcıların yetkilerini düzenleyebilir. Fakat kullanıcı listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_User_UserInGroup": {
+      "title": "Kullanıcının Dahil Olduğu Grupları Düzenleme Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcıların dahil oldukları grupları düzenleyebilir. Fakat kullanıcı listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_Group": {
+      "title": "Kullanıcı Grupları İçin Üst Düzey Yetki",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcı gruplarıyla ilgili tüm işlemleri yapabilir."
+    },
+    "Root_UserManagement_Group_List": {
+      "title": "Kullanıcı Grupları Listesine Erişim Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcı grupları listesine erişebilir."
+    },
+    "Root_UserManagement_Group_Add": {
+      "title": "Kullanıcı Grubu Ekleme Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, yeni kullanıcı grubu ekleyebilir. Fakat kullanıcı grupları listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_Group_Update": {
+      "title": "Kullanıcı Grubu Güncelleme Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcı gruplarının bilgilerini güncelleyebilir. Fakat kullanıcı grupları listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_Group_ChangeStatus": {
+      "title": "Kullanıcı Grubu Silme Yetkisi (pasif duruma getirme yetkisi)",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcı gruplarını silebilir. Fakat kullanıcı grupları listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_Group_ChangeRoles": {
+      "title": "Kullanıcı Gruplarının Yetkilerini Düzenleme Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, kullanıcı gruplarının yetkilerini düzenleyebilir. Fakat kullanıcı grupları listesine erişimi yoksa, bu işlemi de yapamayacaktır."
+    },
+    "Root_UserManagement_Role": {
+      "title": "Yetki Tanımları İçin Üst Düzey Yetki",
+      "desc": "Bu yetkiye sahip olan kullanıcı, yetki tanımlarıyla ilgili tüm işlemleri yapabilir."
+    },
+    "Root_UserManagement_Role_List": {
+      "title": "Yetki Tanımları Listesine Erişim Yetkisi",
+      "desc": "Bu yetkiye sahip olan kullanıcı, yetki tanımları listesine erişebilir."
+    },
+    "Root_Modules": {
+      "title": "Modüller İçin Üst Düzey Yetki",
+      "desc": "Bu yetkiye sahip olan kullanıcı, tüm modüllerle ilgili tüm işlemleri gerçekleştirebilir."
+    }
+  }
+}
