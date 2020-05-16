@@ -2,11 +2,12 @@
 It is a control panel application that works with the API prepared with CSBEF. The basic structure required for a control panel application is prepared within this application. For new applications, this application is used as an infrastructure, the screen and business rules required for the actual application are built on this infrastructure.
 
 # Current Version
-v3.2.0
+v3.2.3
 
 # Version Info
-- Added Dynamic Form feature
-- Fixed some bugs
+- Folder structure changed for github build
+- All dependencies have been updated
+- DynamicContent structure removed (to be added later as a new module)
 
 # Status
 No planned development.
