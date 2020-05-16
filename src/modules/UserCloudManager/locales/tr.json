@@ -1,0 +1,360 @@
+{
+  "menu": {
+    "root": {
+      "title": "Dosya Yöneticisi",
+      "list": {
+        "title": "Dosyalarınız"
+      },
+      "sharedFiles": {
+        "title": "Paylaşılan Dosyalar"
+      }
+    }
+  },
+  "storage": {
+    "Project_FmShare": {
+      "add": {
+        "title": "{user} sizinle bir dosya/klasör paylaştı",
+        "desc": "{user} isimli kullanıcı sizinle {name} isimli dosyayı/klasörü paylaştı."
+      },
+      "remove": {
+        "title": "{user} sizinle bir dosyanın/klasörün paylaşımını durdurdu",
+        "desc": "{user} isimli kullanıcı {name} isimli dosyanın/klasörün paylaşmını durdurdu."
+      }
+    }
+  },
+  "apiErrors": {
+    "fm": {
+      "AddDirectory_ModelValidationFail": "Bilgiler doğru bir şekilde iletilemedi!",
+      "AddDirectory_ParentDirectoryNotFound": "Üst klasör bulunamadı!",
+      "AddDirectory_TitleExists": "Klasör adı kullanılıyor!",
+      "UpdateDirectory_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "UpdateDirectory_DataNotFound": "Kayıt bulunamadı!",
+      "UpdateDirectory_TitleExists": "Klasör adı kullanılıyor!",
+      "ChangeStatusDirectory_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "ChangeStatusDirectory_DataNotFound": "Kayıt bulunamadı!",
+      "MoveDirectory_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "MoveDirectory_MovedDirectoryNotFound": "Taşınacak klasör kaydı bulunamadı!",
+      "MoveDirectory_TargetDirectoryNotFound": "Hedef klasör bulunamadı!",
+      "MoveDirectory_NestingProblem": "İç içe geçme hatası! Klasörü kendi altındaki bir başka klasöre taşınmak istendiğinde bu hatayla karşılaşılır.",
+      "CopyDirectory_TargetDirectoryNotFound": "Hedef klasör bulunamadı!",
+      "CopyDirectory_CopiedDirectoryNotFound": "Kopyalanan klasör bulunamadı!",
+      "CopyDirectory_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "ShareDirectory_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "ShareDirectory_DataNotFound": "Kayıt bulunamadı!",
+      "AddFile_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "AddFile_DirectoryNotFound": "Hedef klasör bulunamadı!",
+      "AddFile_TitleExists": "Dosya adı kullanılıyor!",
+      "UpdateFile_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "UpdateFile_DataNotFound": "Dosya bulunamadı!",
+      "UpdateFile_TitleExists": "Dosya adı kullanılıyor!",
+      "ChangeStatusFile_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "ChangeStatusFile_DataNotFound": "Kayıt bulunamadı!",
+      "MoveFile_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "MoveFile_FileNotFound": "Taşınacak dosya bulunamadı!",
+      "MoveFile_DirectoryNotFound": "Hedef klasör bulunamadı!",
+      "CopyFile_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "CopyFile_FileNotFound": "Dosya bulunamadı!",
+      "CopyFile_DirectoryNotFound": "Hedef klasör bulunamadı!",
+      "ShareFile_ModelValidationFail": "Bilgiler doğrulanamadı!",
+      "ShareFile_DataNotFound": "Dosya bulunamadı!",
+      "GetFmTreeDirectoryItem_DirectoryNotFound": "Klasör bulunamadı!",
+      "GetFmTreeFileItem_FileNotFound": "Dosya bulunamadı!",
+      "GetShareFileItem_FileNotFound": "Dosya bulunamadı!",
+      "GetShareFileItem_DirectoryNotFound": "Klasör bulunamadı!"
+    }
+  },
+  "roles": {
+    "Root_Modules_UserCloudManager": {
+      "title": "Dosya Yönetimi Servisi İçin Üst Düzey Yetki",
+      "desc": "Bu yetkiye sahip olan kullanıcı, dosya yönetimi servisindeki tüm işlemleri gerçekleştirebilir."
+    }
+  },
+  "components": {
+    "editDirectory": {
+      "template": {
+        "currentPathTitle": "Bulunduğu Dizin:",
+        "titleLabel": "Klasör Adı",
+        "descriptionLabel": "Klasör Açıklaması",
+        "cancelBtn": "VAZGEÇ",
+        "saveBtn": "KAYDET"
+      },
+      "script": {
+        "data": {
+          "validations": {
+            "titleValidation": {
+              "err1": "Klasör adı zorunlu!"
+            }
+          }
+        },
+        "methods": {
+          "save": {
+            "formValidationError": "Forma hatalar var!",
+            "loading": "Güncelleniyor...",
+            "successTitle": "Başarılı",
+            "successDesc": "Klasör başarılı bir şekilde güncellendi."
+          }
+        }
+      }
+    },
+    "editFile": {
+      "template": {
+        "currentPathTitle": "Bulunduğu Dizin:",
+        "titleLabel": "Klasör Adı",
+        "descriptionLabel": "Klasör Açıklaması",
+        "cancelBtn": "VAZGEÇ",
+        "saveBtn": "KAYDET"
+      },
+      "script": {
+        "data": {
+          "validations": {
+            "err1": "Dosya adı zorunlu!"
+          }
+        },
+        "methods": {
+          "save": {
+            "formInvalidMsg": "Forma hatalar var!",
+            "loading": "Güncelleniyor...",
+            "successTitle": "Başarılı",
+            "successMsg": "Dosya başarılı bir şekilde güncellendi."
+          }
+        }
+      }
+    },
+    "newDirectory": {
+      "template": {
+        "newFolderBtn": "Yeni Klasör",
+        "currentPathTitle": "Ekleneceği Dizin: ",
+        "titleLabel": "Klasör Adı",
+        "descriptionLabel": "Klasör Açıklaması",
+        "cancelBtn": "VAZGEÇ",
+        "saveBtn": "KAYDET"
+      },
+      "script": {
+        "data": {
+          "validations": {
+            "err1": "Klasör adı zorunlu!"
+          }
+        },
+        "methods": {
+          "save": {
+            "formInvalidMsg": "Forma hatalar var!",
+            "loading": "Kaydediliyor...",
+            "successTitle": "Başarılı",
+            "successMsg": "Klasör başarılı bir şekilde eklendi."
+          }
+        }
+      }
+    },
+    "newFile": {
+      "template": {
+        "newFileBtn": "Yeni Dosya",
+        "currentPathTitle": "Ekleneceği Dizin:",
+        "titleLabel": "Dosya Adı",
+        "descriptionLabel": "Dosya Açıklaması",
+        "fileLabel": "Yüklenecek Dosya",
+        "cancelBtn": "VAZGEÇ",
+        "saveBtn": "KAYDET"
+      },
+      "script": {
+        "data": {
+          "validations": {
+            "titleValidation": {
+              "err1": "Dosya adı zorunlu!"
+            },
+            "fileValidation": {
+              "err1": "Dosya seçimi zorunlu!"
+            }
+          }
+        },
+        "methods": {
+          "save": {
+            "formInvalidMsg": "Formda hatalar var!",
+            "loading": "Kaydediliyor...",
+            "successTitle": "Kaydedildi",
+            "successMsg": "Dosya başarılı bir şekilde yüklendi."
+          }
+        }
+      }
+    },
+    "selectDirectory": {
+      "template": {
+        "moveDirectoryTitle": "Taşınacak Klasör:",
+        "moveFileTitile": "Taşınacak Dosya:",
+        "coptDirectoryTitle": "Kopyalanacak Klasör:",
+        "copyFileTitle": "Kopyalanacak Dosya:",
+        "selectedPathTitile": "Seçilen Dizin: ",
+        "cancelBtn": "VAZGEÇ",
+        "saveBtn": "KAYDET"
+      },
+      "script": {
+        "data": {
+          "defaultTitile": "Klasör Seçimi"
+        },
+        "methods": {
+          "save": {
+            "selectedPathEmptyError": "Hedef klasör seçilmemiş!"
+          }
+        }
+      }
+    },
+    "shareDirectory": {
+      "template": {
+        "currentPathTitle": "Bulunduğu Dizin: ",
+        "sharedUserGroupsTitle": "Paylaşılan Kullanıcı Grupları",
+        "sharedUsersTitle": "Paylaşılan Kullanıcılar",
+        "cancelBtn": "VAZGEÇ",
+        "saveBtn": "KAYDET"
+      },
+      "script": {
+        "methods": {
+          "save": {
+            "loading": "Kaydediliyor...",
+            "successTitle": "Başarılı",
+            "successMsg": "Klasör başarılı bir şekilde paylaşıldı."
+          }
+        }
+      }
+    },
+    "shareFile": {
+      "template": {
+        "currentPathTitle": "Bulunduğu Dizin: ",
+        "sharedUserGroupsTitle": "Paylaşılan Kullanıcı Grupları",
+        "sharedUsersTitle": "Paylaşılan Kullanıcılar",
+        "cancelBtn": "VAZGEÇ",
+        "saveBtn": "KAYDET"
+      },
+      "script": {
+        "methods": {
+          "save": {
+            "loading": "Kaydediliyor...",
+            "successTitle": "Başarılı",
+            "successMsg": "Dosya başarılı bir şekilde paylaşıldı."
+          }
+        }
+      }
+    },
+    "toolbar": {
+      "template": {
+        "addNewFileTitle": "YENİ DOSYA EKLE",
+        "addNewDirectoryTitle": "YENİ KLASÖR EKLE"
+      }
+    },
+    "tree": {
+      "template": {
+        "searchPlaceholder": "Dosya ve klasörlerde arayın",
+        "addSubDirectoryTitle": "Alt Klasör Ekle",
+        "addFileTitle": "Dosya Ekle",
+        "editDirectoryTitle": "Klasör Bilgilerini Güncelle",
+        "shareDirectoryTitle": "Klasörü Paylaş",
+        "moveDirectoryTitle": "Klasörü Taşı",
+        "copyDirectoryTitle": "Klasörü Kopyala",
+        "removeDirectoryTitle": "Klasörü Sil",
+        "downloadFileTitle": "Dosyayı İndir/Göster",
+        "editFileTitle": "Dosya Bilgilerini Güncelle",
+        "shareFileTitle": "Dosyayı Paylaş",
+        "moveFileTitle": "Dosyayı Taşı",
+        "copyFileTitle": "Dosyayı Kopyala",
+        "removeFileTitle": "Dosyayı Sil"
+      }
+    }
+  },
+  "views": {
+    "list": {
+      "template": {
+        "title": "Dosyalarınız",
+        "folderCurrentPathTitle": "Bulunduğu Dizin:",
+        "folderCountFileTitle": "Toplam Dosya Sayısı:",
+        "folderCountSizeTitle": "Toplam Boyut:",
+        "folderAddedDateTitle": "Eklenme Tarihi:",
+        "folderLastUpdateDateTitle": "Son Güncelleme Tarihi:",
+        "folderSharedGroupsTitle": "Paylaşılan Kullanıcı Grupları",
+        "folderSharedUsers": "Paylaşılan Kullanıcılar",
+        "fileCurrentPathTitle": "Bulunduğu Dizin:",
+        "fileSize": "Boyut:",
+        "fileAddedDateTitle": "Eklenme Tarihi:",
+        "fileLastUpdateDateTitle": "Son Güncelleme Tarihi:",
+        "fileSharedGroups": "Paylaşılan Kullanıcı Grupları",
+        "fileSharedUsers": "Paylaşılan Kullanıcılar",
+        "updateFolderBtn": "GÜNCELLE",
+        "shareFolderBtn": "PAYLAŞ",
+        "removeFolderBtn": "SİL",
+        "downloadFolderBtn": "İNDİR/GÖSTER",
+        "updateFileBtn": "GÜNCELLE",
+        "shareFileBtn": "PAYLAŞ",
+        "removeFileBtn": "SİL",
+        "emptySelectedDesc": "Soldan bir klasör yada dosya seçin.",
+        "emptyListInfo": "Dosya alanınıda eklenmiş herhangi bir klasör veya dosya bulunmuyor. Başlamak için yukarıdaki klasör ekleme tuşuna basarak yeni bir klasör ekleyin. Daha sonrasında istediğiniz gibi klasör ve dosya eklemeleri yapabilirsiniz. Unutmayın, bir dosya sadece bir klasör altına eklenebilir..."
+      },
+      "script": {
+        "methods": {
+          "actionRemoveDirectory": {
+            "confirmTitle": "İşlem Onayı",
+            "confirmMsg": "Klasörü silmek istediğinize emin misiniz?",
+            "confirmInfo": "Klasörle birlikte tüm alt klasörlerle tüm dosyalar da silinecektir. Ayrıca, silenecek olan tüm klasör ve dosyalarla ilgili paylaşımlarda iptal edilecektir.",
+            "loading": "İşlem gerçekleştiriliyor...",
+            "successTitle": "Başarılı",
+            "successMsg": "Klasör başarılı bir şekilde silindi."
+          },
+          "actionRemoveFile": {
+            "confirmTitle": "İşlem Onayı",
+            "confirmMsg": "Dosyayı silmek istediğinize emin misiniz?",
+            "confirmInfo": "",
+            "loading": "İşlem gerçekleştiriliyor...",
+            "successTitle": "Başarılı",
+            "successMsg": "Dosya başarılı bir şekilde silindi."
+          },
+          "actionMoveDirectory": {
+            "confirmTitle": "İşlem Onayı",
+            "confirmMsg": "Klasörü taşıma işlemine devam etmek istiyor musunuz?",
+            "confirmInfo": "(bu işlemi geri alamayacaksınız)",
+            "loading": "Klasör taşınıyor...",
+            "successTitle": "Taşındı",
+            "successDesc": "Klasör başarılı bir şekilde taşındı."
+          },
+          "actionMoveFile": {
+            "confirmTitle": "İşlem Onayı",
+            "confirmMsg": "Dosyayı taşıma işlemine devam etmek istiyor musunuz?",
+            "confirmInfo": "(bu işlemi geri alamayacaksınız)",
+            "loading": "Dosya taşınıyor...",
+            "successTitle": "Taşındı",
+            "successMsg": "Dosya başarılı bir şekilde taşındı."
+          },
+          "actionCopyDirectory": {
+            "confirmTitle": "İşlem Onayı",
+            "confirmMsg": "Klasörü kopyalama işlemine devam etmek istiyor musunuz?",
+            "confirmInfo": "(bu işlemi geri alamayacaksınız)",
+            "loading": "Klasör kopyalanıyor...",
+            "successTitle": "Kopyalandı",
+            "successMsg": "Klasör başarılı bir şekilde kopyalandı."
+          },
+          "actionCopyFile": {
+            "confirmTitle": "İşlem Onayı",
+            "confirmMsg": "Dosyayı kopyalama işlemine devam etmek istiyor musunuz?",
+            "confirmInfo": "(bu işlemi geri alamayacaksınız)",
+            "loading": "Dosya kopyalanıyor...",
+            "successTitle": "Kopyalandı",
+            "successMsg": "Dosya başarılı bir şekilde kopyalandı."
+          }
+        }
+      }
+    },
+    "sharedFiles": {
+      "template": {
+        "title": "Sizinle Paylaşılan Dosyalar",
+        "searchPlaceholder": "Dosyalarda Ara..."
+      },
+      "script": {
+        "data": {
+          "headers": {
+            "fileTitle": "Dosya",
+            "fileFullPath": "Bulunduğu Dizin",
+            "fileDescription": "Açıklama",
+            "directoryTitle": "Bulunduğu Klasör",
+            "fileSizeTxt": "Boyutu",
+            "ownerUserFullName": "Sahibi"
+          }
+        }
+      }
+    }
+  }
+}
