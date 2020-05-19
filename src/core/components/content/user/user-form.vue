@@ -66,6 +66,7 @@
           <v-col v-if="showCurrentPassInput" cols="6">
             <v-text-field
               v-model="currentUser.currentPass"
+              :rules="validations.passwordValidation"
               :label="
                 $t(
                   'components.content.user.userForm.template.form.labels.currentPass'
@@ -83,6 +84,7 @@
           <v-col cols="6">
             <v-text-field
               v-model="currentUser.newPass"
+              :rules="validations.passwordValidation"
               :label="
                 $t(
                   'components.content.user.userForm.template.form.labels.newPass'
@@ -100,6 +102,7 @@
           <v-col cols="6">
             <v-text-field
               v-model="currentUser.newPassAgain"
+              :rules="validations.passwordValidation"
               :label="
                 $t(
                   'components.content.user.userForm.template.form.labels.newPassAgain'
@@ -226,6 +229,20 @@ export default {
           t.t(
             "components.content.user.userForm.script.data.validations.emailValidation.formatError"
           )
+      ],
+      passwordValidation: [
+        v => {
+          if (Tools.isNullOrEmpty(v)) return true;
+
+          try {
+            if (!Tools.validatePass(v))
+              return t.t(
+                "components.content.user.userForm.script.data.validations.passValidation.formatError"
+              );
+          } catch (e) {
+            return true;
+          }
+        }
       ]
     }
   }),
