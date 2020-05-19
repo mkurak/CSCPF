@@ -97,12 +97,6 @@ export default {
       this.$emit("close");
     },
     save() {
-      this.$store.commit(
-        "m_layout_loading_msg",
-        t.t("components.content.userInGroupsManage.script.methods.save.loading")
-      );
-      this.sendProcessStatus = true;
-
       Tools.showConfirmMsg(
         t.t(
           "components.content.userInGroupsManage.script.methods.save.processConfirm.title"
@@ -114,6 +108,14 @@ export default {
           "components.content.userInGroupsManage.script.methods.save.processConfirm.info"
         )
       ).then(answer => {
+        this.$store.commit(
+          "m_layout_loading_msg",
+          t.t(
+            "components.content.userInGroupsManage.script.methods.save.loading"
+          )
+        );
+        this.sendProcessStatus = true;
+
         if (answer) {
           if (this.selectedGroup.length === 0) {
             Tools.showConfirmMsg(
