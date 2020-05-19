@@ -14,9 +14,10 @@
       </v-avatar>
       <v-toolbar-title>{{ user.name + " " + user.surname }}</v-toolbar-title>
     </v-toolbar>
-    <v-card color="blue-grey lighten-5 messagesState">
+    <v-card color="blue-grey lighten-5">
       <v-card-text
         :style="{ height: messagesListHeight + 'px', overflow: 'auto' }"
+        class="messagesState"
       >
         <div v-if="user.messages.length > 0">
           <v-layout v-for="msg in user.messages" :key="msg.id">
@@ -95,6 +96,7 @@
         </div>
       </v-card-text>
       <v-textarea
+        ref="messageInput"
         v-model="message"
         filled
         :label="this.$t('components.app.chat.template.messageBoxPlaceholder')"
@@ -194,10 +196,17 @@ export default {
         .then(() => {
           this.message = "";
           this.messageSending = false;
+          this.focusMessageInput();
         })
         .catch(() => {
           this.messageSending = false;
+          this.focusMessageInput();
         });
+    },
+    focusMessageInput() {
+      this.$nextTick(() => {
+        this.$refs.messageInput.focus();
+      });
     },
     watchEnterKey(e) {
       if (this.message === "") return;

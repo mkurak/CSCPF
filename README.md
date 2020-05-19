@@ -5,10 +5,10 @@
 It is a control panel application that works with the API prepared with CSBEF. The basic structure required for a control panel application is prepared within this application. For new applications, this application is used as an infrastructure, the screen and business rules required for the actual application are built on this infrastructure.
 
 # Current Version
-v3.3.2
+v3.3.3
 
 # Version Info
-- Fixed an error in applying password rules section.
+- After writing the message, it is provided to focus on the message writing field again.
 
 # Status
 No planned development.
