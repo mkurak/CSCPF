@@ -65,18 +65,22 @@ const getters = {
       return user.online === true;
     });
 
-    let listSort = _.sortBy(list, "lastMessage");
+    // let listSort = _.sortBy(list, "lastMessage");
+    let listSort = _.sortBy(list, "name");
 
-    return listSort.reverse();
+    // return listSort.reverse();
+    return listSort;
   },
   g_socket_users_getOfflineUsers(state) {
     let list = state.socket.users.filter(user => {
       return user.online === false;
     });
 
-    let listSort = _.sortBy(list, "lastMessage");
+    // let listSort = _.sortBy(list, "lastMessage");
+    let listSort = _.sortBy(list, "name");
 
-    return listSort.reverse();
+    // return listSort.reverse();
+    return listSort;
   },
   g_socket_users_sortedLastMsg(state) {
     let listSort = _.sortBy(state.socket.users, "lastMessage");
@@ -404,6 +408,8 @@ const actions = {
       };
 
       user.messages.push(pushModel);
+
+      user.lastMessage = payload.addingDate;
 
       let viewNotify = true;
 

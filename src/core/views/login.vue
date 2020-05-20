@@ -125,8 +125,8 @@ export default {
         {
           Email: this.email,
           Password: sha1(this.pass + GlobalEnv.hashCodes.Password),
-          Device: "EkoFoodVueApp",
-          DeviceKey: "EkoFoodVueApp"
+          Device: "CSCPFApp",
+          DeviceKey: "CSCPFApp"
         },
         GlobalEnv.hashCodes.UserManagement.Token.CreateToken
       );

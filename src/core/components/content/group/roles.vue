@@ -76,10 +76,6 @@ export default {
       this.$emit("close");
     },
     save() {
-      this.$store.commit(
-        "m_layout_loading_msg",
-        t.t("components.content.groupRoles.script.save.loading")
-      );
       this.sendProcessStatus = true;
 
       Tools.showConfirmMsg(
@@ -117,6 +113,11 @@ export default {
       });
     },
     saveContinue() {
+      this.$store.commit(
+        "m_layout_loading_msg",
+        t.t("components.content.groupRoles.script.save.loading")
+      );
+
       this.$store
         .dispatch("a_storages_userGroups_saveRoles_api", {
           groupId: this.group.id,

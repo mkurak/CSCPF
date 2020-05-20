@@ -54,7 +54,7 @@ const mutations = {
       localStorage.removeItem(GlobalEnv.system.tokenKey);
     } else {
       localStorage.setItem(GlobalEnv.system.tokenKey, token);
-      const user = JSON.parse(atob(token.split(".")[1]));
+      const user = Tools.parseJwt(token);
       state.session.tokenUser = user;
     }
     state.session.token = token;
