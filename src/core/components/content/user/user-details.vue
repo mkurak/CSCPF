@@ -97,8 +97,6 @@ import { mapGetters } from "vuex";
 import Tools from "@/core/plugins/tools";
 import GlobalEnv from "@/core/constants/global-env";
 import ProjectTabComponent from "@/project/integration/profile-project-view-tab";
-import _ from "underscore";
-import t from "@/core/plugins/i18n";
 
 export default {
   components: {
@@ -115,7 +113,7 @@ export default {
     GlobalEnv
   }),
   computed: {
-    ...mapGetters(["g_session_tokenUser"])
+    ...mapGetters(["g_session_tokenUser", "g_storages_user_fullName"])
   },
   methods: {
     getUser_fullName(id) {
@@ -126,16 +124,7 @@ export default {
           this.g_session_tokenUser.UserSurname
         );
       } else {
-        let findIndex = _.findIndex(this.getAllUsers, {
-          id: id
-        });
-        if (findIndex > -1) {
-          return this.getAllUsers[findIndex].fullName;
-        } else {
-          return t.t(
-            "views.socketUsers.script.methods.getUser_fullName.unknownUser"
-          );
-        }
+        return this.g_storages_user_fullName(id);
       }
     },
     goMessage() {

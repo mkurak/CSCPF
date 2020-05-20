@@ -5,13 +5,10 @@
 It is a control panel application that works with the API prepared with CSBEF. The basic structure required for a control panel application is prepared within this application. For new applications, this application is used as an infrastructure, the screen and business rules required for the actual application are built on this infrastructure.
 
 # Current Version
-v3.3.4
+v3.3.5
 
 # Version Info
-- The ranking in active and passive user lists has been changed (sorted by name)
-- Fixed an issue with updating the group's roles.
-- The tool that turned the JWT Token key was changed
-- Device name used in sign-in changed
+- User information adding and updating in user detail information was coming incorrectly, it is now fixed.
 
 # Status
 No planned development.
