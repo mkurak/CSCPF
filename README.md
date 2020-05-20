@@ -5,10 +5,10 @@
 It is a control panel application that works with the API prepared with CSBEF. The basic structure required for a control panel application is prepared within this application. For new applications, this application is used as an infrastructure, the screen and business rules required for the actual application are built on this infrastructure.
 
 # Current Version
-v3.3.5
+v3.3.6
 
 # Version Info
-- User information adding and updating in user detail information was coming incorrectly, it is now fixed.
+- Additional language support has been added to menu texts.
 
 # Status
 No planned development.

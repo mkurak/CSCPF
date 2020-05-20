@@ -22,7 +22,9 @@
       >
         <template v-slot:activator>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title"></v-list-item-title>
+            <v-list-item-title
+              v-text="Tools.checkI18n(item.title)"
+            ></v-list-item-title>
           </v-list-item-content>
         </template>
 
@@ -32,7 +34,9 @@
           :to="subItem.url"
         >
           <v-list-item-content>
-            <v-list-item-title v-text="subItem.title"></v-list-item-title>
+            <v-list-item-title
+              v-text="Tools.checkI18n(subItem.title)"
+            ></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-group>
@@ -43,10 +47,12 @@
 <script>
 import { mapGetters } from "vuex";
 import GlobalEnv from "@/core/constants/global-env";
+import Tools from "@/core/plugins/tools";
 
 export default {
   data: () => ({
-    GlobalEnv
+    GlobalEnv,
+    Tools
   }),
   computed: {
     ...mapGetters(["g_layout_drawerStatus", "g_menu_menus"]),
