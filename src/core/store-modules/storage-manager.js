@@ -63,19 +63,38 @@ const actions = {
     }
 
     for (let i = 0; i < context.getters.g_storages_storages.length; i++) {
+      context.commit("m_layout_loading_view", true);
       await context.dispatch(
         context.getters.g_storages_storages[i].clearActionName
       );
+      context.commit("m_layout_loading_view", false);
     }
 
     let findStorages = context.getters.g_storages_storages.filter(storage => {
       return storage.loadStartUp === true;
     });
 
+    let initDataActions = [];
+
     for (let i = 0; i < findStorages.length; i++) {
-      await context.dispatch(findStorages[i].loadActionName);
+      let findedStorage = findStorages[i];
+      context.commit("m_layout_loading_msg", findedStorage.loadingText ?? "");
+      await context.dispatch(findedStorage.loadActionName, {});
+      initDataActions.push(findedStorage.initDataActionName);
       findStorages[i].loadStatus = true;
     }
+
+    context.commit(
+      "m_layout_loading_msg",
+      t.t("storeModules.defaultInitMessage")
+    );
+    if (initDataActions && initDataActions.length > 0) {
+      for (let i = 0; i < initDataActions.length; i++) {
+        if (initDataActions[i]) await context.dispatch(initDataActions[i]);
+      }
+    }
+
+    context.commit("m_layout_loading_view", false);
   },
   async a_storages_storages_clearUnCoverStorageData(
     context,
@@ -88,6 +107,8 @@ const actions = {
     let foundStorages = context.getters.g_storages_storages.filter(storage => {
       return storage.coverData === false;
     });
+
+    context.commit("m_layout_loading_view", true);
 
     for (let i = 0; i < foundStorages.length; i++) {
       if (foundStorages[i].relationPaths.length === 0) {
@@ -105,8 +126,10 @@ const actions = {
         }
       }
     }
+
+    context.commit("m_layout_loading_view", false);
   },
-  async a_storages_storages_loadPathStorageData(context, currentRouterPath) {
+  async a_storages_storages_loadPathStorageData(context, payload) {
     if (context.getters.g_storages_storages.length === 0) {
       return;
     }
@@ -123,26 +146,43 @@ const actions = {
       let target = false;
 
       foundStorages[i].relationPaths.forEach(path => {
-        if (currentRouterPath === path) target = true;
+        if (payload.path === path) target = true;
       });
 
+      if (foundStorages[i].relationPathsNames) {
+        foundStorages[i].relationPathsNames.forEach(name => {
+          if (payload.name === name) target = true;
+        });
+      }
+
       if (target) {
-        await context.dispatch(foundStorages[i].loadActionName);
+        context.commit(
+          "m_layout_loading_msg",
+          foundStorages[i].loadingText ?? ""
+        );
+        await context.dispatch(foundStorages[i].loadActionName, {});
         foundStorages[i].loadStatus = true;
         storagesForInit.push(foundStorages[i].initDataActionName);
       }
     }
 
+    context.commit(
+      "m_layout_loading_msg",
+      t.t("storeModules.defaultInitMessage")
+    );
     if (storagesForInit.length > 0) {
       for (let i = 0; i < storagesForInit.length; i++) {
-        await context.dispatch(storagesForInit[i]);
+        if (storagesForInit[i]) await context.dispatch(storagesForInit[i]);
       }
     }
 
     context.commit("m_layout_loading_view", false);
   },
-  async a_storages_storages_getData(context, storageKey) {
+  async a_storages_storages_getData(context, storageKey, payload) {
+    context.commit("m_layout_loading_view", true);
+
     if (context.getters.g_storages_storages.length === 0) {
+      context.commit("m_layout_loading_view", false);
       return [];
     }
 
@@ -155,10 +195,14 @@ const actions = {
     if (foundStorage === null) return [];
 
     if (!foundStorage.loadStatus) {
-      await context.dispatch(foundStorage.loadActionName);
+      context.commit("m_layout_loading_msg", foundStorage.loadingText ?? "");
+      await context.dispatch(foundStorage.loadActionName, payload);
       foundStorage.loadStatus = true;
+      context.commit("m_layout_loading_view", false);
       return context.getters[foundStorage.getter];
     }
+
+    context.commit("m_layout_loading_view", false);
 
     return [];
   },
@@ -320,7 +364,9 @@ const actions = {
         break;
     }
 
+    context.commit("m_layout_loading_view", true);
     await context.dispatch(targetStorage.initDataActionName);
+    context.commit("m_layout_loading_view", false);
   }
 };
 

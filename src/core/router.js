@@ -190,10 +190,10 @@ router.beforeEach((to, from, next) => {
           to.fullPath
         )
           .then(() => {
-            return Store.dispatch(
-              "a_storages_storages_loadPathStorageData",
-              to.fullPath
-            );
+            return Store.dispatch("a_storages_storages_loadPathStorageData", {
+              path: to.fullPath,
+              name: to.name
+            });
           })
           .then(() => {
             next();
